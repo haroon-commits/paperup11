@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ShimmerLoading extends StatelessWidget {
@@ -53,7 +54,7 @@ class EmptyState extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor.withOpacity(0.05),
                 shape: BoxShape.circle,

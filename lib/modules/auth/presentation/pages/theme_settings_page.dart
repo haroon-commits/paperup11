@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:paperup1/core/theme/models/theme_config.dart';
 import 'package:paperup1/core/theme/state/theme_notifier.dart';
@@ -26,7 +27,7 @@ class ThemeSettingsPage extends ConsumerWidget {
           ),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
               children: [
                 _buildSectionTitle('Design Style'),
                 const SizedBox(height: 12),
@@ -84,7 +85,7 @@ class ThemeSettingsPage extends ConsumerWidget {
                           children: [
                             Text(
                               'Animated Background',
-                              style: GoogleFonts.outfit(fontWeight: FontWeight.bold, color: Colors.white),
+                              style: AppUIConfig.primaryFont.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
                             ),
                             Text(
                               'Top-notch organic liquid effects',
@@ -112,7 +113,7 @@ class ThemeSettingsPage extends ConsumerWidget {
   Widget _buildSectionTitle(String title) {
     return Text(
       title.toUpperCase(),
-      style: GoogleFonts.outfit(
+      style: AppUIConfig.primaryFont.copyWith(
         fontSize: 12,
         fontWeight: FontWeight.w900,
         color: Colors.white.withOpacity(0.5),
@@ -157,7 +158,7 @@ class _StyleCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 20),
               decoration: BoxDecoration(
                 color: Colors.white.withOpacity(0.05),
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(AppUIConfig.cardRadius),
                 border: Border.all(color: Colors.white.withOpacity(0.1)),
               ),
               child: _buildContent(context, false),
@@ -173,7 +174,7 @@ class _StyleCard extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           label,
-          style: GoogleFonts.outfit(
+          style: AppUIConfig.primaryFont.copyWith(
             fontWeight: active ? FontWeight.bold : FontWeight.normal,
             color: active ? Colors.white : Colors.white.withOpacity(0.4),
           ),

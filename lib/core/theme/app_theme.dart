@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 import 'package:paperup1/core/theme/models/theme_config.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 
 class AppTheme {
   static ThemeData getThemeFromConfig(ThemeConfig config, {bool isDark = false}) {
@@ -17,7 +17,7 @@ class AppTheme {
         secondary: design.secondary,
         surface: isDark ? const Color(0xFF1A1A1A) : const Color(0xFFF8F9FA),
       ),
-      textTheme: GoogleFonts.outfitTextTheme(),
+      textTheme: AppUIConfig.textTheme,
       extensions: [design],
       cardTheme: CardThemeData(
         elevation: 0,
@@ -30,7 +30,7 @@ class AppTheme {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        titleTextStyle: GoogleFonts.outfit(
+        titleTextStyle: AppUIConfig.primaryFont.copyWith(
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: isDark ? Colors.white : Colors.black87,

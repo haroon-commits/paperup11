@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,7 +44,7 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
               error: (err, stack) => Center(child: Text('Error: $err')),
               data: (results) {
                 return ListView.separated(
-                  padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
                   itemCount: results.length,
                   separatorBuilder: (context, index) => const SizedBox(height: 20),
                   itemBuilder: (context, index) {
@@ -76,7 +77,7 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
                             child: Center(
                               child: Text(
                                 result.grade,
-                                style: GoogleFonts.outfit(
+                                style: AppUIConfig.primaryFont.copyWith(
                                   fontSize: 28,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -97,7 +98,7 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
                               children: [
                                 Text(
                                   result.exam.subject,
-                                  style: GoogleFonts.outfit(
+                                  style: AppUIConfig.primaryFont.copyWith(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
                                     color: Colors.white,
@@ -131,7 +132,7 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
                             children: [
                               Text(
                                 '${result.marksObtained.toInt()}',
-                                style: GoogleFonts.outfit(
+                                style: AppUIConfig.primaryFont.copyWith(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 22,
                                   color: Colors.white,

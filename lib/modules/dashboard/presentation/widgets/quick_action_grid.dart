@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
@@ -41,7 +42,7 @@ class QuickActionGrid extends StatelessWidget {
         final action = actions[index];
         
         return GlassContainer(
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(AppUIConfig.cardRadius),
           color: cardColor.withOpacity(0.08),
           border: Border.all(color: cardColor.withOpacity(0.2), width: 1.5),
           child: InkWell(
@@ -67,7 +68,7 @@ class QuickActionGrid extends StatelessWidget {
                   Expanded(
                     child: Text(
                       action.label,
-                      style: GoogleFonts.outfit(
+                      style: AppUIConfig.primaryFont.copyWith(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 
 enum ThemeStyle { glass, neo, minimalist }
 
@@ -12,11 +13,12 @@ class ThemeConfig {
     required this.style,
     required this.primaryColor,
     required this.useAnimatedBackground,
-    this.borderRadius = 24.0,
+    this.borderRadius = AppUIConfig.cardRadius,
   });
 
   Map<String, dynamic> toJson() => {
     'style': style.name,
+    // ignore: deprecated_member_use
     'primaryColor': primaryColor.value,
     'useAnimatedBackground': useAnimatedBackground,
     'borderRadius': borderRadius,
@@ -38,26 +40,27 @@ class ThemeConfig {
     return ThemeConfig(
       style: style ?? this.style,
       primaryColor: primaryColor ?? this.primaryColor,
-      useAnimatedBackground: useAnimatedBackground ?? this.useAnimatedBackground,
+      useAnimatedBackground:
+          useAnimatedBackground ?? this.useAnimatedBackground,
       borderRadius: borderRadius ?? this.borderRadius,
     );
   }
 
   static ThemeConfig studentDefault() => const ThemeConfig(
     style: ThemeStyle.glass,
-    primaryColor: Color(0xFF007AFF),
+    primaryColor: AppUIConfig.studentPrimary,
     useAnimatedBackground: false,
   );
 
   static ThemeConfig parentDefault() => const ThemeConfig(
     style: ThemeStyle.glass,
-    primaryColor: Color(0xFF34C759),
+    primaryColor: AppUIConfig.parentPrimary,
     useAnimatedBackground: false,
   );
 
   static ThemeConfig teacherDefault() => const ThemeConfig(
     style: ThemeStyle.glass,
-    primaryColor: Color(0xFFAF52DE),
+    primaryColor: AppUIConfig.teacherPrimary,
     useAnimatedBackground: false,
   );
 }

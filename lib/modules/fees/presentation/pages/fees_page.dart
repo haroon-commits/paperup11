@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -42,7 +43,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
               error: (err, stack) => Center(child: Text('Error: $err')),
               data: (fees) {
                 return ListView.separated(
-                  padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
                   itemCount: fees.length,
                   separatorBuilder: (context, index) => const SizedBox(height: 16),
                   itemBuilder: (context, index) {
@@ -126,7 +127,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
                       const SizedBox(height: 8),
                       Text(
                         '\$${totalDues.toStringAsFixed(2)}',
-                        style: GoogleFonts.outfit(
+                        style: AppUIConfig.primaryFont.copyWith(
                           color: Colors.white,
                           fontSize: 44,
                           fontWeight: FontWeight.bold,
@@ -187,7 +188,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
               children: [
                 Text(
                   fee.title,
-                  style: GoogleFonts.outfit(
+                  style: AppUIConfig.primaryFont.copyWith(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     color: Colors.white,
@@ -226,7 +227,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
             children: [
               Text(
                 '\$${fee.amount.toStringAsFixed(0)}',
-                style: GoogleFonts.outfit(
+                style: AppUIConfig.primaryFont.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 22,
                   color: Colors.white,

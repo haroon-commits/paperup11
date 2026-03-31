@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paperup1/common_widgets/liquid_header.dart';
@@ -46,7 +47,7 @@ class TimetablePage extends StatelessWidget {
           ),
           Expanded(
             child: ListView.separated(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
               itemCount: schedule.length,
               separatorBuilder: (context, index) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
@@ -80,7 +81,7 @@ class TimetablePage extends StatelessWidget {
                         child: Center(
                           child: Text(
                             item['time'] as String,
-                            style: GoogleFonts.outfit(
+                            style: AppUIConfig.primaryFont.copyWith(
                               fontSize: 11,
                               fontWeight: FontWeight.w900,
                               color: Colors.white,
@@ -101,7 +102,7 @@ class TimetablePage extends StatelessWidget {
                           children: [
                             Text(
                               item['subject'] as String,
-                              style: GoogleFonts.outfit(
+                              style: AppUIConfig.primaryFont.copyWith(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -162,7 +163,7 @@ class _DayChip extends StatelessWidget {
       ),
       child: Text(
         label.toUpperCase(),
-        style: GoogleFonts.outfit(
+        style: AppUIConfig.primaryFont.copyWith(
           fontWeight: isSelected ? FontWeight.w900 : FontWeight.bold,
           fontSize: 11,
           color: isSelected ? Colors.white : Colors.white.withOpacity(0.5),

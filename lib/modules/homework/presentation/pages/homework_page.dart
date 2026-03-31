@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -7,6 +8,8 @@ import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paperup1/common_widgets/liquid_header.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
+
+import 'package:paperup1/common_widgets/page_background.dart';
 
 class HomeworkPage extends ConsumerStatefulWidget {
   const HomeworkPage({super.key});
@@ -33,9 +36,11 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
     final userRole = ref.watch(authProvider).user?.role ?? 'student';
 
     return Scaffold(
-      body: Column(
+      backgroundColor: Colors.transparent,
+      body: PageBackground(
+        child: Column(
         children: [
-          LiquidHeader(
+                                     LiquidHeader(
             title: 'Homework',
             subtitle: 'Assignments & Tasks',
             trailing: userRole == 'teacher'
@@ -44,14 +49,14 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
                     onPressed: () {},
                   )
                 : null,
-          ),
-          Expanded(
+             ), 
+             Expanded(
             child: homeworkState.when(
               loading: () => const Center(child: CircularProgressIndicator()),
               error: (err, stack) => Center(child: Text('Error: $err')),
               data: (assignments) {
                 return ListView.separated(
-                  padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
                   itemCount: assignments.length,
                   separatorBuilder: (context, index) => const SizedBox(height: 16),
                   itemBuilder: (context, index) {
@@ -76,7 +81,7 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
                                  ),
                                  child: Text(
                                    item.subject.toUpperCase(),
-                                   style: GoogleFonts.outfit(
+                                   style: AppUIConfig.primaryFont.copyWith(
                                      fontSize: 10,
                                      fontWeight: FontWeight.w900,
                                      color: Colors.white.withOpacity(0.9),
@@ -90,7 +95,7 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
                           const SizedBox(height: 12),
                            Text(
                              item.title,
-                             style: GoogleFonts.outfit(
+                             style: AppUIConfig.primaryFont.copyWith(
                                fontSize: 20,
                                fontWeight: FontWeight.bold,
                                color: Colors.white,
@@ -125,7 +130,7 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
                                const SizedBox(width: 8),
                                Text(
                                  'DUE: ${DateFormat('MMM dd, yyyy').format(item.dueDate).toUpperCase()}',
-                                 style: GoogleFonts.outfit(
+                                 style: AppUIConfig.primaryFont.copyWith(
                                    fontSize: 11,
                                    color: Colors.white.withOpacity(0.6),
                                    fontWeight: FontWeight.w900,
@@ -157,8 +162,9 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
 
   Color _getStatusColor(String status) {
     switch (status) {
@@ -192,7 +198,7 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
       ),
       child: Text(
         status.toUpperCase(),
-        style: GoogleFonts.outfit(
+        style: AppUIConfig.primaryFont.copyWith(
           fontSize: 10,
           color: Colors.white,
           fontWeight: FontWeight.bold,

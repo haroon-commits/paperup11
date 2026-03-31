@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
@@ -28,7 +29,7 @@ class ProfilePage extends ConsumerWidget {
           ),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
               children: [
                 _buildSection(context, 'Account Settings', [
                   _ProfileItem(icon: Icons.person_outline, label: 'Personal Information', onTap: () {}),
@@ -73,7 +74,7 @@ class ProfilePage extends ConsumerWidget {
           padding: const EdgeInsets.only(left: 8, bottom: 12),
           child: Text(
             title,
-            style: GoogleFonts.outfit(
+            style: AppUIConfig.primaryFont.copyWith(
               fontSize: 14,
               fontWeight: FontWeight.w900,
               color: Colors.white.withOpacity(0.5),
@@ -105,7 +106,7 @@ class _ProfileItem extends StatelessWidget {
       leading: Icon(icon, color: Colors.white.withOpacity(0.8), size: 22),
       title: Text(
         label,
-        style: GoogleFonts.outfit(
+        style: AppUIConfig.primaryFont.copyWith(
           fontSize: 15,
           fontWeight: FontWeight.w600,
           color: Colors.white,

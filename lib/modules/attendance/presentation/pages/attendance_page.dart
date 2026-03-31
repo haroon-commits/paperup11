@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,7 +52,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
               error: (err, stack) => Center(child: Text('Error: $err')),
               data: (logs) {
                 return ListView.separated(
-                  padding: const EdgeInsets.all(24),
+                  padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
                   itemCount: logs.length,
                   separatorBuilder: (context, index) => const SizedBox(height: 16),
                   itemBuilder: (context, index) {
@@ -85,7 +86,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                                 children: [
                                   Text(
                                     log.date.day.toString(),
-                                    style: GoogleFonts.outfit(
+                                    style: AppUIConfig.primaryFont.copyWith(
                                       fontSize: 24,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,
@@ -99,7 +100,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                                   ),
                                   Text(
                                     _getMonthName(log.date.month).substring(0, 3).toUpperCase(),
-                                    style: GoogleFonts.outfit(
+                                    style: AppUIConfig.primaryFont.copyWith(
                                       fontSize: 9,
                                       fontWeight: FontWeight.w900,
                                       color: Colors.white.withOpacity(0.9),
@@ -117,7 +118,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                               children: [
                                 Text(
                                   DateFormat('EEEE').format(log.date),
-                                  style: GoogleFonts.outfit(
+                                  style: AppUIConfig.primaryFont.copyWith(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
                                     color: Colors.white,
@@ -161,7 +162,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                             ),
                             child: Text(
                               log.status.toUpperCase(),
-                              style: GoogleFonts.outfit(
+                              style: AppUIConfig.primaryFont.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 10,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
@@ -56,7 +57,7 @@ class KPICard extends StatelessWidget {
             const Spacer(),
                 Text(
                   title.toUpperCase(),
-                  style: GoogleFonts.outfit(
+                  style: AppUIConfig.primaryFont.copyWith(
                     fontSize: 11,
                     color: Colors.white.withOpacity(0.9),
                     fontWeight: FontWeight.w900,
@@ -73,7 +74,7 @@ class KPICard extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   value,
-                  style: GoogleFonts.outfit(
+                  style: AppUIConfig.primaryFont.copyWith(
                     fontSize: 34,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

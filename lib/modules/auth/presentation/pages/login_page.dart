@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -84,7 +85,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     const SizedBox(height: 32),
                     Text(
                       'PaperUp.',
-                      style: GoogleFonts.outfit(
+                      style: AppUIConfig.primaryFont.copyWith(
                         color: Colors.white,
                         fontSize: 42,
                         fontWeight: FontWeight.bold,
@@ -101,7 +102,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     
                     Text(
                       'THE FUTURE OF SCHOOLING',
-                      style: GoogleFonts.outfit(
+                      style: AppUIConfig.primaryFont.copyWith(
                         color: Colors.white.withOpacity(0.8),
                         fontSize: 12,
                         fontWeight: FontWeight.w900,
@@ -142,7 +143,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                   ? CircularProgressIndicator(color: design.primary)
                                   : Text(
                                       'GET STARTED',
-                                      style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 16, letterSpacing: 1),
+                                      style: AppUIConfig.primaryFont.copyWith(fontWeight: FontWeight.bold, fontSize: 16, letterSpacing: 1),
                                     ),
                             ),
                           ).animate().shimmer(delay: 1.seconds, duration: 2.seconds),
@@ -196,7 +197,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       children: [
         Text(
           label,
-          style: GoogleFonts.outfit(
+          style: AppUIConfig.primaryFont.copyWith(
             color: Colors.white.withOpacity(0.7),
             fontSize: 10,
             fontWeight: FontWeight.w900,

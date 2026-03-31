@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:paperup1/common_widgets/liquid_header.dart';
@@ -43,7 +44,7 @@ class MessagesPage extends StatelessWidget {
           ),
           Expanded(
             child: ListView.separated(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
               itemCount: announcements.length,
               separatorBuilder: (context, index) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
@@ -68,7 +69,7 @@ class MessagesPage extends StatelessWidget {
                       const SizedBox(height: 12),
                       Text(
                         item['title'] as String,
-                        style: GoogleFonts.outfit(
+                        style: AppUIConfig.primaryFont.copyWith(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -152,7 +153,7 @@ class MessagesPage extends StatelessWidget {
       ),
       child: Text(
         category.toUpperCase(),
-        style: GoogleFonts.outfit(
+        style: AppUIConfig.primaryFont.copyWith(
           fontSize: 10,
           color: Colors.white,
           fontWeight: FontWeight.bold,

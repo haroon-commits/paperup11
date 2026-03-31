@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -39,7 +40,7 @@ class DashboardPage extends ConsumerWidget {
                           children: [
                             Text(
                               'PaperUp.',
-                              style: GoogleFonts.outfit(
+                              style: AppUIConfig.primaryFont.copyWith(
                                 color: Colors.white,
                                 fontSize: 28,
                                 fontWeight: FontWeight.bold,
@@ -64,7 +65,7 @@ class DashboardPage extends ConsumerWidget {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

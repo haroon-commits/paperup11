@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:go_router/go_router.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
@@ -19,7 +20,7 @@ class HomeShell extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 24, left: 24, right: 24),
         child: GlassContainer(
           height: 75,
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(AppUIConfig.cardRadius),
           blur: 24,
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Row(

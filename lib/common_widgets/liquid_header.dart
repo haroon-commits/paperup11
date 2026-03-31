@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 
@@ -67,7 +68,7 @@ class LiquidHeader extends StatelessWidget {
               if (subtitle != null)
                 Text(
                   subtitle!.toUpperCase(),
-                  style: GoogleFonts.outfit(
+                  style: AppUIConfig.primaryFont.copyWith(
                     color: Colors.white.withOpacity(0.6),
                     fontSize: 10,
                     fontWeight: FontWeight.w900,
@@ -80,7 +81,7 @@ class LiquidHeader extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: GoogleFonts.outfit(
+                    style: AppUIConfig.primaryFont.copyWith(
                       color: Colors.white,
                       fontSize: 34,
                       fontWeight: FontWeight.bold,
