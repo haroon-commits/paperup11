@@ -17,7 +17,7 @@ class ProfilePage extends ConsumerWidget {
       body: Column(
         children: [
           LiquidHeader(
-            title: 'Profile',
+            title: AppUIConfig.strings.profileTitle,
             subtitle: user?.role.toUpperCase() ?? 'USER',
             height: 220,
             trailing: CircleAvatar(
@@ -30,16 +30,16 @@ class ProfilePage extends ConsumerWidget {
             child: ListView(
               padding: AppUIConfig.components.pagePadding,
               children: [
-                _buildSection(context, 'Account Settings', [
-                  _ProfileItem(icon: Icons.person_outline, label: 'Personal Information', onTap: () {}),
-                  _ProfileItem(icon: Icons.lock_outline, label: 'Privacy & Security', onTap: () {}),
-                  _ProfileItem(icon: Icons.notifications_none, label: 'Notification Settings', onTap: () {}),
+                _buildSection(context, AppUIConfig.strings.profileAccountSettings, [
+                  _ProfileItem(icon: Icons.person_outline, label: AppUIConfig.strings.personalInfo, onTap: () {}),
+                  _ProfileItem(icon: Icons.lock_outline, label: AppUIConfig.strings.privacySecurity, onTap: () {}),
+                  _ProfileItem(icon: Icons.notifications_none, label: AppUIConfig.strings.notificationSettings, onTap: () {}),
                 ]),
                 SizedBox(height: AppUIConfig.metrics.spacingLarge),
-                _buildSection(context, 'App Preferences', [
-                  _ProfileItem(icon: Icons.palette_outlined, label: 'Theme Customization', onTap: () => context.go('/theme-settings')),
-                  _ProfileItem(icon: Icons.language, label: 'Language (English)', onTap: () {}),
-                  _ProfileItem(icon: Icons.help_outline, label: 'Help & Support', onTap: () {}),
+                _buildSection(context, AppUIConfig.strings.profileAppPreferences, [
+                  _ProfileItem(icon: Icons.palette_outlined, label: AppUIConfig.strings.themeCustomization, onTap: () => context.go('/theme-settings')),
+                  _ProfileItem(icon: Icons.language, label: AppUIConfig.strings.languageSetting, onTap: () {}),
+                  _ProfileItem(icon: Icons.help_outline, label: AppUIConfig.strings.helpSupport, onTap: () {}),
                 ]),
                 SizedBox(height: AppUIConfig.metrics.spacingExtraLarge),
                 SizedBox(
@@ -47,7 +47,7 @@ class ProfilePage extends ConsumerWidget {
                   child: TextButton.icon(
                     onPressed: () => ref.read(authProvider.notifier).logout(),
                     icon: Icon(Icons.logout, color: AppUIConfig.colors.danger),
-                    label: Text('Sign Out', style: AppUIConfig.text.bodySemiBold.copyWith(color: AppUIConfig.colors.danger)),
+                    label: Text(AppUIConfig.strings.signOut, style: AppUIConfig.text.bodySemiBold.copyWith(color: AppUIConfig.colors.danger)),
                     style: TextButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(

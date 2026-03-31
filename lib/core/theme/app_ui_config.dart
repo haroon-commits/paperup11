@@ -83,7 +83,7 @@ class _AppColors {
   // --- Timetable & Subject Colors ---
   final Color subjectMath = const Color(0xFF007AFF);
   final Color subjectPhysics = const Color(0xFF5856D6);
-  final Color subjectBreak = const Color(0xFF34C759);
+  final Color subjectBreak = const Color.fromARGB(255, 31, 221, 78);
   final Color subjectEnglish = const Color(0xFFAF52DE);
   final Color subjectChemistry = const Color(0xFFFF2D55);
 
@@ -317,4 +317,59 @@ class _AppStrings {
 
   final String resultsTitle = 'Results';
   final String resultsSubtitle = 'Exam Performance';
+
+  // Global & Navigation
+  final String appName = 'PaperUp.';
+  final String goToDashboard = 'Go to Dashboard';
+  final String error404 = '404';
+  final String pageNotFound = 'Page Not Found';
+  final String errorPrefix = 'Error:';
+
+  // Auth / Login
+  final String loginSubtitle = 'THE FUTUR OF SCHOOLING';
+  final String studentEmailLabel = 'STUDENT EMAIL';
+  final String passwordLabel = 'PASSWORD';
+  final String getStartedButton = 'GET STARTED';
+  final String fastAccessDemo = 'FAST ACCESS FOR DEMO';
+
+  // Dashboard
+  final String quickStats = 'Quick Stats';
+  final String quickActions = 'Quick Actions';
+  final String goodMorning = 'Good Morning,';
+  final String fallbackStudentName = 'Student';
+  final String markAttendance = 'Mark Attendance';
+  final String uploadHomework = 'Upload Homework';
+  final String enterMarks = 'Enter Marks';
+  final String syllabus = 'Syllabus';
+  final String attendance = 'Attendance';
+  final String classes = 'Classes';
+  final String feesDue = 'Fees Due';
+  final String messages = 'Messages';
+
+  // Profile & Theme Settings
+  final String profileTitle = 'Profile';
+  final String profileAccountSettings = 'Account Settings';
+  final String profileAppPreferences = 'App Preferences';
+  final String personalInfo = 'Personal Information';
+  final String privacySecurity = 'Privacy & Security';
+  final String notificationSettings = 'Notification Settings';
+  final String themeCustomization = 'Theme Customization';
+  final String languageSetting = 'Language (English)';
+  final String helpSupport = 'Help & Support';
+  final String signOut = 'Sign Out';
+  final String appearanceTitle = 'Appearance';
+  final String appearanceSubtitle = 'Personalize your experience';
+  final String themeDesignStyle = 'Design Style';
+  final String themePrimaryColor = 'Primary Color';
+  final String themePremiumFeatures = 'Premium Features';
+  final String themeAnimBgTitle = 'Animated Background';
+  final String themeAnimBgSub = 'Top-notch organic liquid effects';
+  final String themeGlass = 'Glass';
+  final String themeNeo = 'Neo';
+  final String themeClean = 'Clean';
+
+  // Attendance & Messages
+  final String attendanceSubtitle = 'Academic Records';
+  final String messagesTitle = 'Notifications';
+  final String messagesSubtitle = 'Latest Updates';
 }

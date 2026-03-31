@@ -39,7 +39,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
           Expanded(
             child: feesState.when(
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (err, stack) => Center(child: Text('Error: $err')),
+              error: (err, stack) => Center(child: Text('${AppUIConfig.strings.errorPrefix} $err')),
               data: (fees) {
                 return ListView.separated(
                   padding: AppUIConfig.components.pagePadding,

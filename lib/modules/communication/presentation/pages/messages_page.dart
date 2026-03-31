@@ -37,9 +37,9 @@ class MessagesPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const LiquidHeader(
-            title: 'Notifications',
-            subtitle: 'Latest Updates',
+          LiquidHeader(
+            title: AppUIConfig.strings.messagesTitle,
+            subtitle: AppUIConfig.strings.messagesSubtitle,
           ),
           Expanded(
             child: ListView.separated(

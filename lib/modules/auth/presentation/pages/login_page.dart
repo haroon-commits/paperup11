@@ -83,7 +83,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     
                     SizedBox(height: AppUIConfig.metrics.spacingExtraLarge),
                     Text(
-                      'PaperUp.',
+                      AppUIConfig.strings.appName,
                       style: AppUIConfig.text.heading1.copyWith(
                         fontSize: 42,
                         letterSpacing: -1.5,
@@ -98,7 +98,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.1, end: 0),
                     
                     Text(
-                      'THE FUTURE OF SCHOOLING',
+                      AppUIConfig.strings.loginSubtitle,
                       style: AppUIConfig.text.caption.copyWith(
                         color: AppUIConfig.colors.white.withOpacity(0.8),
                         fontSize: 12,
@@ -120,9 +120,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _buildModernField('STUDENT EMAIL', Icons.alternate_email_rounded, _emailController),
+                          _buildModernField(AppUIConfig.strings.studentEmailLabel, Icons.alternate_email_rounded, _emailController),
                           SizedBox(height: AppUIConfig.metrics.spacingLarge),
-                          _buildModernField('PASSWORD', Icons.lock_outline_rounded, _passwordController, isPassword: true),
+                          _buildModernField(AppUIConfig.strings.passwordLabel, Icons.lock_outline_rounded, _passwordController, isPassword: true),
                           const SizedBox(height: 40),
                           SizedBox(
                             width: double.infinity,
@@ -138,7 +138,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               child: authState.isLoading
                                   ? CircularProgressIndicator(color: design.primary)
                                   : Text(
-                                      'GET STARTED',
+                                      AppUIConfig.strings.getStartedButton,
                                       style: AppUIConfig.text.button.copyWith(color: design.primary, letterSpacing: 1),
                                     ),
                             ),
@@ -160,7 +160,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     
                     // Role Quick Selection
                     Text(
-                      'FAST ACCESS FOR DEMO',
+                      AppUIConfig.strings.fastAccessDemo,
                       style: AppUIConfig.text.caption.copyWith(
                         color: AppUIConfig.colors.textLight, 
                         fontSize: 10, 

@@ -40,7 +40,7 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
           Expanded(
             child: resultsState.when(
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (err, stack) => Center(child: Text('Error: $err')),
+              error: (err, stack) => Center(child: Text('${AppUIConfig.strings.errorPrefix} $err')),
               data: (results) {
                 return ListView.separated(
                   padding: AppUIConfig.components.pagePadding,

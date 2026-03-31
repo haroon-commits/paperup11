@@ -43,7 +43,7 @@ class DashboardPage extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'PaperUp.',
+                              AppUIConfig.strings.appName,
                               style: AppUIConfig.text.heading1,
                             ),
                             SizedBox(height: AppUIConfig.metrics.spacingTiny),
@@ -72,7 +72,7 @@ class DashboardPage extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Quick Stats',
+                      AppUIConfig.strings.quickStats,
                       style: AppUIConfig.text.heading3.copyWith(color: AppUIConfig.colors.white),
                     ).animate().fadeIn(delay: 200.ms),
                     SizedBox(height: AppUIConfig.metrics.spacingDefault),
@@ -82,7 +82,7 @@ class DashboardPage extends ConsumerWidget {
                         children: [
                           Expanded(
                             child: KPICard(
-                              title: 'Attendance',
+                              title: AppUIConfig.strings.attendance,
                               value: '94%',
                               icon: Icons.calendar_today_rounded,
                               color: design.primary,
@@ -91,7 +91,7 @@ class DashboardPage extends ConsumerWidget {
                           SizedBox(width: AppUIConfig.metrics.spacingDefault),
                           Expanded(
                             child: KPICard(
-                              title: role == 'teacher' ? 'Classes' : 'Fees Due',
+                              title: role == 'teacher' ? AppUIConfig.strings.classes : AppUIConfig.strings.feesDue,
                               value: role == 'teacher' ? '6' : '\$450',
                               icon: role == 'teacher' ? Icons.class_rounded : Icons.account_balance_wallet_rounded,
                               color: AppUIConfig.colors.warning,
@@ -102,7 +102,7 @@ class DashboardPage extends ConsumerWidget {
                     ),
                     SizedBox(height: AppUIConfig.metrics.spacingExtraLarge),
                     Text(
-                      'Quick Actions',
+                      AppUIConfig.strings.quickActions,
                       style: AppUIConfig.text.heading3.copyWith(color: AppUIConfig.colors.white),
                     ).animate().fadeIn(delay: 400.ms),
                     SizedBox(height: AppUIConfig.metrics.spacingDefault),
@@ -120,24 +120,24 @@ class DashboardPage extends ConsumerWidget {
   List<QuickActionItem> _getRoleActions(BuildContext context, String role) {
     if (role == 'teacher') {
       return [
-        QuickActionItem(label: 'Mark Attendance', icon: Icons.check_circle_outline, onTap: () => context.push('/attendance')),
-        QuickActionItem(label: 'Upload Homework', icon: Icons.upload_file, onTap: () => context.push('/homework')),
-        QuickActionItem(label: 'Enter Marks', icon: Icons.grade, onTap: () => context.push('/results')),
-        QuickActionItem(label: 'Syllabus', icon: Icons.book, onTap: () => context.push('/messages')),
+        QuickActionItem(label: AppUIConfig.strings.markAttendance, icon: Icons.check_circle_outline, onTap: () => context.push('/attendance')),
+        QuickActionItem(label: AppUIConfig.strings.uploadHomework, icon: Icons.upload_file, onTap: () => context.push('/homework')),
+        QuickActionItem(label: AppUIConfig.strings.enterMarks, icon: Icons.grade, onTap: () => context.push('/results')),
+        QuickActionItem(label: AppUIConfig.strings.syllabus, icon: Icons.book, onTap: () => context.push('/messages')),
       ];
     } else if (role == 'parent') {
       return [
-        QuickActionItem(label: 'Attendance', icon: Icons.calendar_month, onTap: () => context.push('/attendance')),
-        QuickActionItem(label: 'Fees', icon: Icons.receipt_long, onTap: () => context.push('/fees')),
-        QuickActionItem(label: 'Results', icon: Icons.poll, onTap: () => context.push('/results')),
-        QuickActionItem(label: 'Messages', icon: Icons.chat_bubble_outline, onTap: () => context.push('/messages')),
+        QuickActionItem(label: AppUIConfig.strings.attendance, icon: Icons.calendar_month, onTap: () => context.push('/attendance')),
+        QuickActionItem(label: AppUIConfig.strings.feesTitle, icon: Icons.receipt_long, onTap: () => context.push('/fees')),
+        QuickActionItem(label: AppUIConfig.strings.resultsTitle, icon: Icons.poll, onTap: () => context.push('/results')),
+        QuickActionItem(label: AppUIConfig.strings.messages, icon: Icons.chat_bubble_outline, onTap: () => context.push('/messages')),
       ];
     } else {
       return [
-        QuickActionItem(label: 'Attendance', icon: Icons.calendar_month, onTap: () => context.push('/attendance')),
-        QuickActionItem(label: 'Homework', icon: Icons.home_work, onTap: () => context.push('/homework')),
-        QuickActionItem(label: 'Results', icon: Icons.poll, onTap: () => context.push('/results')),
-        QuickActionItem(label: 'Timetable', icon: Icons.schedule, onTap: () => context.push('/timetable')),
+        QuickActionItem(label: AppUIConfig.strings.attendance, icon: Icons.calendar_month, onTap: () => context.push('/attendance')),
+        QuickActionItem(label: AppUIConfig.strings.homeworkTitle, icon: Icons.home_work, onTap: () => context.push('/homework')),
+        QuickActionItem(label: AppUIConfig.strings.resultsTitle, icon: Icons.poll, onTap: () => context.push('/results')),
+        QuickActionItem(label: AppUIConfig.strings.timetableTitle, icon: Icons.schedule, onTap: () => context.push('/timetable')),
       ];
     }
   }
@@ -160,14 +160,14 @@ class DashboardPage extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Good Morning,',
+          AppUIConfig.strings.goodMorning,
           style: AppUIConfig.text.body.copyWith(
             color: AppUIConfig.colors.textMain.withOpacity(0.8), 
             fontSize: 16
           ),
         ),
         Text(
-          name ?? 'Student',
+          name ?? AppUIConfig.strings.fallbackStudentName,
           style: AppUIConfig.text.heading1.copyWith(
             color: AppUIConfig.colors.textMain, 
             fontSize: 32

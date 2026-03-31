@@ -36,8 +36,8 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
       body: Column(
         children: [
           LiquidHeader(
-            title: 'Attendance',
-            subtitle: 'Academic Records',
+            title: AppUIConfig.strings.attendance,
+            subtitle: AppUIConfig.strings.attendanceSubtitle,
             trailing: userRole == 'teacher'
                 ? IconButton(
                     icon: Icon(Icons.add_circle, color: AppUIConfig.colors.white, size: 30),
@@ -48,7 +48,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
           Expanded(
             child: attendanceState.when(
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (err, stack) => Center(child: Text('Error: $err')),
+              error: (err, stack) => Center(child: Text('${AppUIConfig.strings.errorPrefix} $err')),
               data: (logs) {
                 return ListView.separated(
                   padding: AppUIConfig.components.pagePadding,

@@ -17,12 +17,12 @@ class NotFoundPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                '404',
+                AppUIConfig.strings.error404,
                 style: AppUIConfig.text.heading1.copyWith(fontSize: 48),
               ),
               SizedBox(height: AppUIConfig.metrics.spacingSmall),
               Text(
-                'Page not found',
+                AppUIConfig.strings.pageNotFound,
                 style: AppUIConfig.text.heading2.copyWith(fontSize: 20),
               ),
               if (location != null) ...[
@@ -41,7 +41,7 @@ class NotFoundPage extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: AppUIConfig.metrics.paddingDefault, vertical: AppUIConfig.metrics.paddingSmall),
-                  child: Text('Go to Dashboard', style: AppUIConfig.text.button),
+                  child: Text(AppUIConfig.strings.goToDashboard, style: AppUIConfig.text.button),
                 ),
               ),
             ],

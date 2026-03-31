@@ -52,7 +52,7 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
              Expanded(
             child: homeworkState.when(
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (err, stack) => Center(child: Text('Error: $err')),
+              error: (err, stack) => Center(child: Text('${AppUIConfig.strings.errorPrefix} $err')),
               data: (assignments) {
                 return ListView.separated(
                   padding: AppUIConfig.components.pagePadding,

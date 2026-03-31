@@ -19,34 +19,34 @@ class ThemeSettingsPage extends ConsumerWidget {
     return Scaffold(
       body: Column(
         children: [
-          const LiquidHeader(
-            title: 'Appearance',
-            subtitle: 'Personalize your experience',
+          LiquidHeader(
+            title: AppUIConfig.strings.appearanceTitle,
+            subtitle: AppUIConfig.strings.appearanceSubtitle,
           ),
           Expanded(
             child: ListView(
               padding: AppUIConfig.components.pagePadding,
               children: [
-                _buildSectionTitle('Design Style'),
+                _buildSectionTitle(AppUIConfig.strings.themeDesignStyle),
                 SizedBox(height: AppUIConfig.metrics.spacingSmall),
                 Row(
                   children: [
                     _StyleCard(
-                      label: 'Glass',
+                      label: AppUIConfig.strings.themeGlass,
                       isSelected: config.style == ThemeStyle.glass,
                       icon: Icons.blur_on,
                       onTap: () => _updateStyle(ref, role, config, ThemeStyle.glass),
                     ),
                     SizedBox(width: AppUIConfig.metrics.spacingSmall),
                     _StyleCard(
-                      label: 'Neo',
+                      label: AppUIConfig.strings.themeNeo,
                       isSelected: config.style == ThemeStyle.neo,
                       icon: Icons.layers_outlined,
                       onTap: () => _updateStyle(ref, role, config, ThemeStyle.neo),
                     ),
                     SizedBox(width: AppUIConfig.metrics.spacingSmall),
                     _StyleCard(
-                      label: 'Clean',
+                      label: AppUIConfig.strings.themeClean,
                       isSelected: config.style == ThemeStyle.minimalist,
                       icon: Icons.check_circle_outline,
                       onTap: () => _updateStyle(ref, role, config, ThemeStyle.minimalist),
@@ -54,7 +54,7 @@ class ThemeSettingsPage extends ConsumerWidget {
                   ],
                 ),
                 SizedBox(height: AppUIConfig.metrics.spacingExtraLarge),
-                _buildSectionTitle('Primary Color'),
+                _buildSectionTitle(AppUIConfig.strings.themePrimaryColor),
                 SizedBox(height: AppUIConfig.metrics.spacingSmall),
                 Wrap(
                   spacing: AppUIConfig.metrics.spacingSmall,
@@ -69,7 +69,7 @@ class ThemeSettingsPage extends ConsumerWidget {
                   ],
                 ),
                 SizedBox(height: AppUIConfig.metrics.spacingExtraLarge),
-                _buildSectionTitle('Premium Features'),
+                _buildSectionTitle(AppUIConfig.strings.themePremiumFeatures),
                 SizedBox(height: AppUIConfig.metrics.spacingSmall),
                 GlassContainer(
                   padding: AppUIConfig.components.cardPadding,
@@ -82,11 +82,11 @@ class ThemeSettingsPage extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Animated Background',
+                              AppUIConfig.strings.themeAnimBgTitle,
                               style: AppUIConfig.text.bodySemiBold.copyWith(color: AppUIConfig.colors.white),
                             ),
                             Text(
-                              'Top-notch organic liquid effects',
+                              AppUIConfig.strings.themeAnimBgSub,
                               style: AppUIConfig.text.caption.copyWith(color: AppUIConfig.colors.textLight),
                             ),
                           ],
