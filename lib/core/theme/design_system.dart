@@ -24,7 +24,7 @@ class AppDesignSystem extends ThemeExtension<AppDesignSystem> {
     required this.liquidGradient,
     required this.cardGradient,
     required this.accentGradient,
-    this.cardRadius = AppUIConfig.cardRadius,
+    this.cardRadius = 24.0,
     this.cardBlur = 15.0,
   });
 

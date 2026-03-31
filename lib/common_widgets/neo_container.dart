@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 
 class NeoContainer extends StatelessWidget {
   final Widget? child;
   final double blur;
   final Offset offset;
-  final double borderRadius;
+  final double? borderRadius;
   final Color? color;
   final EdgeInsetsGeometry? padding;
   final bool isPressed;
@@ -14,7 +15,7 @@ class NeoContainer extends StatelessWidget {
     this.child,
     this.blur = 12,
     this.offset = const Offset(6, 6),
-    this.borderRadius = 24,
+    this.borderRadius,
     this.color,
     this.padding,
     this.isPressed = false,
@@ -22,7 +23,8 @@ class NeoContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseColor = color ?? Theme.of(context).colorScheme.surface;
+    final baseColor = color ?? AppUIConfig.colors.white;
+    final r = borderRadius ?? AppUIConfig.metrics.radiusLarge;
     
     // Calculate highlight and shadow colors
     final hsl = HSLColor.fromColor(baseColor);
@@ -34,7 +36,7 @@ class NeoContainer extends StatelessWidget {
       padding: padding,
       decoration: BoxDecoration(
         color: baseColor,
-        borderRadius: BorderRadius.circular(borderRadius),
+        borderRadius: BorderRadius.circular(r),
         gradient: isPressed
             ? LinearGradient(
                 begin: Alignment.topLeft,

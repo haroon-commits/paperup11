@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 
 class NotFoundPage extends StatelessWidget {
   const NotFoundPage({super.key, this.location});
@@ -11,31 +12,37 @@ class NotFoundPage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(AppUIConfig.metrics.paddingLarge),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
+              Text(
                 '404',
-                style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                style: AppUIConfig.text.heading1.copyWith(fontSize: 48),
               ),
-              const SizedBox(height: 12),
-              const Text(
+              SizedBox(height: AppUIConfig.metrics.spacingSmall),
+              Text(
                 'Page not found',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                style: AppUIConfig.text.heading2.copyWith(fontSize: 20),
               ),
               if (location != null) ...[
-                const SizedBox(height: 8),
+                SizedBox(height: AppUIConfig.metrics.spacingTiny),
                 Text(
                   'No route exists for: $location',
                   textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: AppUIConfig.text.body,
                 ),
               ],
-              const SizedBox(height: 20),
+              SizedBox(height: AppUIConfig.metrics.spacingLarge),
               FilledButton(
                 onPressed: () => context.go('/dashboard'),
-                child: const Text('Go to Dashboard'),
+                style: FilledButton.styleFrom(
+                  shape: RoundedRectangleBorder(borderRadius: AppUIConfig.components.inputRadius),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: AppUIConfig.metrics.paddingDefault, vertical: AppUIConfig.metrics.paddingSmall),
+                  child: Text('Go to Dashboard', style: AppUIConfig.text.button),
+                ),
               ),
             ],
           ),

@@ -17,12 +17,16 @@ class HomeShell extends StatelessWidget {
       extendBody: true,
       body: child,
       bottomNavigationBar: Container(
-        padding: const EdgeInsets.only(bottom: 24, left: 24, right: 24),
+        padding: EdgeInsets.only(
+          bottom: AppUIConfig.metrics.paddingLarge,
+          left: AppUIConfig.metrics.paddingLarge,
+          right: AppUIConfig.metrics.paddingLarge,
+        ),
         child: GlassContainer(
           height: 75,
-          borderRadius: BorderRadius.circular(AppUIConfig.cardRadius),
+          borderRadius: BorderRadius.circular(AppUIConfig.metrics.radiusLarge),
           blur: 24,
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+          padding: EdgeInsets.symmetric(horizontal: AppUIConfig.metrics.paddingTiny),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -71,11 +75,12 @@ class _NavBarItem extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: AppUIConfig.components.inputRadius,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 400),
         curve: Curves.easeOutCubic,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.symmetric(
+            horizontal: 20, vertical: AppUIConfig.metrics.paddingTiny),
         decoration: BoxDecoration(
           gradient: isActive
               ? LinearGradient(
@@ -84,7 +89,7 @@ class _NavBarItem extends StatelessWidget {
                   end: Alignment.bottomRight,
                 )
               : null,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: AppUIConfig.components.inputRadius,
           border: isActive ? Border.all(color: design.primary.withOpacity(0.3), width: 1.5) : null,
           boxShadow: isActive
               ? [
@@ -98,8 +103,8 @@ class _NavBarItem extends StatelessWidget {
         ),
         child: Icon(
           icon,
-          color: isActive ? design.primary : Colors.white.withOpacity(0.4),
-          size: 28,
+          color: isActive ? design.primary : AppUIConfig.colors.textLight.withOpacity(0.4),
+          size: AppUIConfig.metrics.iconSizeLarge,
         ),
       ),
     );

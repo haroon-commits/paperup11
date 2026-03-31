@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
@@ -49,12 +48,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               width: 300,
               height: 300,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.15),
+                color: AppUIConfig.colors.white.withOpacity(0.15),
                 shape: BoxShape.circle,
               ),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-                child: Container(color: Colors.transparent),
+                child: Container(color: AppUIConfig.colors.transparent),
               ),
             ),
           ).animate(onPlay: (c) => c.repeat(reverse: true)).move(
@@ -73,26 +72,24 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   children: [
                     // Brand Badge
                     Container(
-                      padding: const EdgeInsets.all(16),
+                      padding: EdgeInsets.all(AppUIConfig.metrics.paddingDefault),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
+                        color: AppUIConfig.colors.white.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(28),
-                        border: Border.all(color: Colors.white.withOpacity(0.2)),
+                        border: Border.all(color: AppUIConfig.colors.white.withOpacity(0.2)),
                       ),
-                      child: const Icon(Icons.school_rounded, color: Colors.white, size: 48),
+                      child: Icon(Icons.school_rounded, color: AppUIConfig.colors.white, size: 48),
                     ).animate().scale(curve: Curves.easeOutBack, duration: 600.ms),
                     
-                    const SizedBox(height: 32),
+                    SizedBox(height: AppUIConfig.metrics.spacingExtraLarge),
                     Text(
                       'PaperUp.',
-                      style: AppUIConfig.primaryFont.copyWith(
-                        color: Colors.white,
+                      style: AppUIConfig.text.heading1.copyWith(
                         fontSize: 42,
-                        fontWeight: FontWeight.bold,
                         letterSpacing: -1.5,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.3),
+                            color: AppUIConfig.colors.shadowDark,
                             blurRadius: 12,
                             offset: const Offset(0, 4),
                           ),
@@ -102,14 +99,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     
                     Text(
                       'THE FUTURE OF SCHOOLING',
-                      style: AppUIConfig.primaryFont.copyWith(
-                        color: Colors.white.withOpacity(0.8),
+                      style: AppUIConfig.text.caption.copyWith(
+                        color: AppUIConfig.colors.white.withOpacity(0.8),
                         fontSize: 12,
-                        fontWeight: FontWeight.w900,
                         letterSpacing: 4,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.2),
+                            color: AppUIConfig.colors.shadowDark,
                             blurRadius: 4,
                           ),
                         ],
@@ -125,7 +121,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _buildModernField('STUDENT EMAIL', Icons.alternate_email_rounded, _emailController),
-                          const SizedBox(height: 24),
+                          SizedBox(height: AppUIConfig.metrics.spacingLarge),
                           _buildModernField('PASSWORD', Icons.lock_outline_rounded, _passwordController, isPassword: true),
                           const SizedBox(height: 40),
                           SizedBox(
@@ -134,16 +130,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             child: ElevatedButton(
                               onPressed: authState.isLoading ? null : () => _handleLogin(),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.white,
+                                backgroundColor: AppUIConfig.colors.white,
                                 foregroundColor: design.primary,
                                 elevation: 0,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                shape: RoundedRectangleBorder(borderRadius: AppUIConfig.components.inputRadius),
                               ),
                               child: authState.isLoading
                                   ? CircularProgressIndicator(color: design.primary)
                                   : Text(
                                       'GET STARTED',
-                                      style: AppUIConfig.primaryFont.copyWith(fontWeight: FontWeight.bold, fontSize: 16, letterSpacing: 1),
+                                      style: AppUIConfig.text.button.copyWith(color: design.primary, letterSpacing: 1),
                                     ),
                             ),
                           ).animate().shimmer(delay: 1.seconds, duration: 2.seconds),
@@ -153,10 +149,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
                     if (authState.error != null)
                       Padding(
-                        padding: const EdgeInsets.only(top: 24),
+                        padding: EdgeInsets.only(top: AppUIConfig.metrics.paddingLarge),
                         child: Text(
                           authState.error!,
-                          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                          style: AppUIConfig.text.bodySemiBold,
                         ),
                       ).animate().shake(),
 
@@ -165,18 +161,22 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     // Role Quick Selection
                     Text(
                       'FAST ACCESS FOR DEMO',
-                      style: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 2),
+                      style: AppUIConfig.text.caption.copyWith(
+                        color: AppUIConfig.colors.textLight, 
+                        fontSize: 10, 
+                        letterSpacing: 2
+                      ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: AppUIConfig.metrics.spacingDefault),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           _quickRoleChip('student'),
-                          const SizedBox(width: 12),
+                          SizedBox(width: AppUIConfig.metrics.spacingSmall),
                           _quickRoleChip('teacher'),
-                          const SizedBox(width: 12),
+                          SizedBox(width: AppUIConfig.metrics.spacingSmall),
                           _quickRoleChip('parent'),
                         ],
                       ),
@@ -197,24 +197,23 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       children: [
         Text(
           label,
-          style: AppUIConfig.primaryFont.copyWith(
-            color: Colors.white.withOpacity(0.7),
+          style: AppUIConfig.text.caption.copyWith(
+            color: AppUIConfig.colors.white.withOpacity(0.7),
             fontSize: 10,
-            fontWeight: FontWeight.w900,
             letterSpacing: 2,
           ),
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: AppUIConfig.metrics.spacingSmall),
         Container(
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.05),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: Colors.white.withOpacity(0.1)),
+            color: AppUIConfig.colors.white.withOpacity(0.05),
+            borderRadius: AppUIConfig.components.inputRadius,
+            border: Border.all(color: AppUIConfig.colors.white.withOpacity(0.1)),
           ),
           child: TextField(
             controller: controller,
             obscureText: isPassword,
-            style: const TextStyle(color: Colors.white, fontSize: 16),
+            style: AppUIConfig.text.bodyBright.copyWith(fontSize: 16),
             decoration: InputDecoration(
               prefixIcon: Icon(icon, color: Colors.white60, size: 22),
               border: InputBorder.none,
@@ -236,13 +235,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.1),
+          color: AppUIConfig.colors.white.withOpacity(0.1),
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: Colors.white.withOpacity(0.2)),
+          border: Border.all(color: AppUIConfig.colors.white.withOpacity(0.2)),
         ),
         child: Text(
           role.toUpperCase(),
-          style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+          style: AppUIConfig.text.chip.copyWith(
+            color: AppUIConfig.colors.white, 
+            fontSize: 11
+          ),
         ),
       ),
     );

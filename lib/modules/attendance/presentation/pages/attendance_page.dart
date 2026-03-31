@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:paperup1/modules/attendance/presentation/state/attendance_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
@@ -41,7 +40,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
             subtitle: 'Academic Records',
             trailing: userRole == 'teacher'
                 ? IconButton(
-                    icon: const Icon(Icons.add_circle, color: Colors.white, size: 30),
+                    icon: Icon(Icons.add_circle, color: AppUIConfig.colors.white, size: 30),
                     onPressed: () {},
                   )
                 : null,
@@ -52,14 +51,14 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
               error: (err, stack) => Center(child: Text('Error: $err')),
               data: (logs) {
                 return ListView.separated(
-                  padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
+                  padding: AppUIConfig.components.pagePadding,
                   itemCount: logs.length,
-                  separatorBuilder: (context, index) => const SizedBox(height: 16),
+                  separatorBuilder: (context, index) => SizedBox(height: AppUIConfig.metrics.spacingDefault),
                   itemBuilder: (context, index) {
                     final log = logs[index];
 
                     return GlassContainer(
-                      padding: const EdgeInsets.all(16),
+                      padding: AppUIConfig.components.cardPadding,
                       child: Row(
                         children: [
                           Container(
@@ -71,7 +70,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
-                              borderRadius: BorderRadius.circular(18),
+                              borderRadius: BorderRadius.circular(AppUIConfig.metrics.radiusDefault),
                               boxShadow: [
                                 BoxShadow(
                                   color: _getStatusColor(log.status).withOpacity(0.3),
@@ -86,13 +85,12 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                                 children: [
                                   Text(
                                     log.date.day.toString(),
-                                    style: AppUIConfig.primaryFont.copyWith(
+                                    style: AppUIConfig.text.heading1.copyWith(
                                       fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
+                                      color: AppUIConfig.colors.white,
                                       shadows: [
                                         Shadow(
-                                          color: Colors.black.withOpacity(0.3),
+                                          color: AppUIConfig.colors.shadowDark,
                                           blurRadius: 4,
                                         ),
                                       ],
@@ -100,58 +98,49 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                                   ),
                                   Text(
                                     _getMonthName(log.date.month).substring(0, 3).toUpperCase(),
-                                    style: AppUIConfig.primaryFont.copyWith(
+                                    style: AppUIConfig.text.caption.copyWith(
                                       fontSize: 9,
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.white.withOpacity(0.9),
-                                      letterSpacing: 1,
+                                      color: AppUIConfig.colors.white.withOpacity(0.9),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                           ),
-                          const SizedBox(width: 20),
+                          SizedBox(width: AppUIConfig.metrics.spacingDefault),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   DateFormat('EEEE').format(log.date),
-                                  style: AppUIConfig.primaryFont.copyWith(
-                                    fontWeight: FontWeight.bold,
+                                  style: AppUIConfig.text.heading2.copyWith(
                                     fontSize: 18,
-                                    color: Colors.white,
-                                    shadows: [
-                                      Shadow(
-                                        color: Colors.black.withOpacity(0.3),
-                                        blurRadius: 4,
-                                      ),
-                                    ],
+                                    color: AppUIConfig.colors.white,
                                   ),
                                 ),
-                                const SizedBox(height: 2),
+                                SizedBox(height: AppUIConfig.metrics.spacingTiny),
                                 Text(
                                   log.status.toUpperCase(),
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(0.7),
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w900,
-                                    letterSpacing: 1,
+                                  style: AppUIConfig.text.caption.copyWith(
+                                    color: AppUIConfig.colors.white.withOpacity(0.7),
                                   ),
                                 ),
                               ],
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: AppUIConfig.metrics.paddingTiny, 
+                              vertical: 4
+                            ),
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [_getStatusColor(log.status), _getStatusColor(log.status).withOpacity(0.8)],
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
-                              borderRadius: BorderRadius.circular(8),
+                              borderRadius: BorderRadius.circular(AppUIConfig.metrics.radiusSmall),
                               boxShadow: [
                                 BoxShadow(
                                   color: _getStatusColor(log.status).withOpacity(0.3),
@@ -162,11 +151,8 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                             ),
                             child: Text(
                               log.status.toUpperCase(),
-                              style: AppUIConfig.primaryFont.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 10,
-                                letterSpacing: 0.5,
+                              style: AppUIConfig.text.chip.copyWith(
+                                color: AppUIConfig.colors.white,
                               ),
                             ),
                           ),
@@ -186,13 +172,13 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
   Color _getStatusColor(String status) {
     switch (status) {
       case 'Present':
-        return const Color(0xFF34C759); // iOS Premium Green
+        return AppUIConfig.colors.success;
       case 'Absent':
-        return const Color(0xFFFF3B30); // iOS Premium Red
+        return AppUIConfig.colors.danger;
       case 'Late':
-        return const Color(0xFFFF9500); // iOS Premium Orange
+        return AppUIConfig.colors.warning;
       default:
-        return Colors.white54;
+        return AppUIConfig.colors.textLight;
     }
   }
 

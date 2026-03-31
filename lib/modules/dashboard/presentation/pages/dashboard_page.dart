@@ -7,7 +7,6 @@ import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:paperup1/modules/dashboard/presentation/widgets/kpi_card.dart';
 import 'package:paperup1/modules/dashboard/presentation/widgets/quick_action_grid.dart';
 import 'package:paperup1/core/theme/design_system.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
 import 'package:paperup1/common_widgets/page_background.dart';
@@ -22,14 +21,19 @@ class DashboardPage extends ConsumerWidget {
     final design = Theme.of(context).design;
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppUIConfig.colors.transparent,
       body: PageBackground(
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
               child: GlassContainer(
-                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
-                padding: EdgeInsets.fromLTRB(24, 16, 24, 24),
+                borderRadius: AppUIConfig.components.bottomSheetRadius,
+                padding: EdgeInsets.fromLTRB(
+                  AppUIConfig.metrics.paddingLarge, 
+                  AppUIConfig.metrics.paddingDefault, 
+                  AppUIConfig.metrics.paddingLarge, 
+                  AppUIConfig.metrics.paddingLarge
+                ),
                 child: Column(
                   children: [
                     Row(
@@ -40,24 +44,22 @@ class DashboardPage extends ConsumerWidget {
                           children: [
                             Text(
                               'PaperUp.',
-                              style: AppUIConfig.primaryFont.copyWith(
-                                color: Colors.white,
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: -1,
-                              ),
+                              style: AppUIConfig.text.heading1,
                             ),
-                            const SizedBox(height: 4),
+                            SizedBox(height: AppUIConfig.metrics.spacingTiny),
                             Text(
                               DateFormat('EEEE, d MMM').format(DateTime.now()),
-                              style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 13, letterSpacing: 0.5),
+                              style: AppUIConfig.text.caption.copyWith(
+                                color: AppUIConfig.colors.textLight,
+                                fontSize: 13,
+                              ),
                             ),
                           ],
                         ),
                         _buildAvatar(user?.avatarUrl),
                       ],
                     ),
-                    const SizedBox(height: 32),
+                    SizedBox(height: AppUIConfig.metrics.spacingExtraLarge),
                     _buildWelcomeSection(user?.name),
                   ],
                 ),
@@ -65,15 +67,15 @@ class DashboardPage extends ConsumerWidget {
             ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
+                padding: AppUIConfig.components.pagePadding,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Quick Stats',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: AppUIConfig.text.heading3.copyWith(color: AppUIConfig.colors.white),
                     ).animate().fadeIn(delay: 200.ms),
-                    const SizedBox(height: 16),
+                    SizedBox(height: AppUIConfig.metrics.spacingDefault),
                     SizedBox(
                       height: 160,
                       child: Row(
@@ -86,24 +88,24 @@ class DashboardPage extends ConsumerWidget {
                               color: design.primary,
                             ),
                           ),
-                          const SizedBox(width: 16),
+                          SizedBox(width: AppUIConfig.metrics.spacingDefault),
                           Expanded(
                             child: KPICard(
                               title: role == 'teacher' ? 'Classes' : 'Fees Due',
                               value: role == 'teacher' ? '6' : '\$450',
                               icon: role == 'teacher' ? Icons.class_rounded : Icons.account_balance_wallet_rounded,
-                              color: const Color(0xFFFF9500),
+                              color: AppUIConfig.colors.warning,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 32),
-                    const Text(
+                    SizedBox(height: AppUIConfig.metrics.spacingExtraLarge),
+                    Text(
                       'Quick Actions',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: AppUIConfig.text.heading3.copyWith(color: AppUIConfig.colors.white),
                     ).animate().fadeIn(delay: 400.ms),
-                    const SizedBox(height: 16),
+                    SizedBox(height: AppUIConfig.metrics.spacingDefault),
                     QuickActionGrid(actions: _getRoleActions(context, role)),
                   ],
                 ),
@@ -144,10 +146,10 @@ class DashboardPage extends ConsumerWidget {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.white.withOpacity(0.3), width: 2),
+        border: Border.all(color: AppUIConfig.colors.cardBorder, width: 2),
       ),
       child: CircleAvatar(
-        radius: 24,
+        radius: AppUIConfig.metrics.radiusLarge,
         backgroundImage: NetworkImage(url ?? 'https://i.pravatar.cc/150'),
       ),
     );
@@ -159,11 +161,17 @@ class DashboardPage extends ConsumerWidget {
       children: [
         Text(
           'Good Morning,',
-          style: TextStyle(color: Colors.white.withOpacity(0.8), fontSize: 16),
+          style: AppUIConfig.text.body.copyWith(
+            color: AppUIConfig.colors.textMain.withOpacity(0.8), 
+            fontSize: 16
+          ),
         ),
         Text(
           name ?? 'Student',
-          style: const TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
+          style: AppUIConfig.text.heading1.copyWith(
+            color: AppUIConfig.colors.textMain, 
+            fontSize: 32
+          ),
         ),
       ],
     );

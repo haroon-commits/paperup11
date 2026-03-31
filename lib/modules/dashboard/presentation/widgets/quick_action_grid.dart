@@ -3,7 +3,6 @@ import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class QuickActionItem {
   final String label;
@@ -29,31 +28,39 @@ class QuickActionGrid extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
+        crossAxisSpacing: AppUIConfig.metrics.spacingDefault,
+        mainAxisSpacing: AppUIConfig.metrics.spacingDefault,
         childAspectRatio: 1.6,
       ),
       itemCount: actions.length,
       itemBuilder: (context, index) {
-        final colors = [design.primary, const Color(0xFFFF2D55), const Color(0xFF34C759), const Color(0xFFFF9500), const Color(0xFFAF52DE)];
+        final colors = [
+          design.primary,
+          AppUIConfig.colors.danger,
+          AppUIConfig.colors.success,
+          AppUIConfig.colors.warning,
+          AppUIConfig.colors.teacherTheme,
+        ];
         final cardColor = colors[index % colors.length];
         final action = actions[index];
         
         return GlassContainer(
-          borderRadius: BorderRadius.circular(AppUIConfig.cardRadius),
+          borderRadius: BorderRadius.circular(AppUIConfig.metrics.radiusLarge),
           color: cardColor.withOpacity(0.08),
           border: Border.all(color: cardColor.withOpacity(0.2), width: 1.5),
           child: InkWell(
             onTap: action.onTap,
             borderRadius: BorderRadius.circular(20),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              padding: EdgeInsets.symmetric(
+                  horizontal: AppUIConfig.metrics.paddingDefault,
+                  vertical: AppUIConfig.metrics.paddingSmall),
               child: Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(10),
+                    padding: EdgeInsets.all(AppUIConfig.metrics.paddingTiny + 2),
                     decoration: BoxDecoration(
                       color: cardColor.withOpacity(0.15),
                       borderRadius: BorderRadius.circular(14),
@@ -61,21 +68,20 @@ class QuickActionGrid extends StatelessWidget {
                     child: Icon(
                       action.icon,
                       color: cardColor,
-                      size: 24,
+                      size: AppUIConfig.metrics.iconSizeDefault,
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  SizedBox(width: AppUIConfig.metrics.paddingSmall),
                   Expanded(
                     child: Text(
                       action.label,
-                      style: AppUIConfig.primaryFont.copyWith(
+                      style: AppUIConfig.text.bodySemiBold.copyWith(
                         fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
+                        color: AppUIConfig.colors.white,
                         height: 1.1,
                         shadows: [
                           Shadow(
-                            color: Colors.black.withOpacity(0.2),
+                            color: AppUIConfig.colors.black.withOpacity(0.2),
                             blurRadius: 4,
                             offset: const Offset(0, 1),
                           ),

@@ -13,7 +13,7 @@ class ThemeConfig {
     required this.style,
     required this.primaryColor,
     required this.useAnimatedBackground,
-    this.borderRadius = AppUIConfig.cardRadius,
+    this.borderRadius = 24.0,
   });
 
   Map<String, dynamic> toJson() => {

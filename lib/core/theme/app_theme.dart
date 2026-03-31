@@ -15,25 +15,23 @@ class AppTheme {
         brightness: isDark ? Brightness.dark : Brightness.light,
         primary: baseColor,
         secondary: design.secondary,
-        surface: isDark ? const Color(0xFF1A1A1A) : const Color(0xFFF8F9FA),
+        surface: isDark ? const Color(0xFF1A1A1A) : AppUIConfig.colors.primaryBackground,
       ),
-      textTheme: AppUIConfig.textTheme,
       extensions: [design],
       cardTheme: CardThemeData(
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(design.cardRadius),
         ),
-        color: isDark ? Colors.white.withOpacity(0.05) : Colors.white,
+        color: isDark ? AppUIConfig.colors.white.withOpacity(0.05) : AppUIConfig.colors.white,
       ),
       appBarTheme: AppBarTheme(
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppUIConfig.colors.transparent,
         elevation: 0,
-        titleTextStyle: AppUIConfig.primaryFont.copyWith(
+        titleTextStyle: AppUIConfig.text.heading3.copyWith(
           fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: isDark ? Colors.white : Colors.black87,
+          color: isDark ? AppUIConfig.colors.white : AppUIConfig.colors.black,
         ),
       ),
     );

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:paperup1/modules/exams/presentation/state/exams_provider.dart';
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:paperup1/common_widgets/liquid_header.dart';
@@ -35,8 +34,8 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
       body: Column(
         children: [
           LiquidHeader(
-            title: AppConfig.strings.resultsTitle,
-            subtitle: AppConfig.strings.resultsSubtitle,
+            title: AppUIConfig.strings.resultsTitle,
+            subtitle: AppUIConfig.strings.resultsSubtitle,
           ),
           Expanded(
             child: resultsState.when(
@@ -44,15 +43,15 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
               error: (err, stack) => Center(child: Text('Error: $err')),
               data: (results) {
                 return ListView.separated(
-                  padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
+                  padding: AppUIConfig.components.pagePadding,
                   itemCount: results.length,
-                  separatorBuilder: (context, index) => const SizedBox(height: 20),
+                  separatorBuilder: (context, index) => SizedBox(height: AppUIConfig.metrics.spacingLarge),
                   itemBuilder: (context, index) {
                     final result = results[index];
                     final gradeColor = _getGradeColor(result.grade);
 
                     return GlassContainer(
-                      padding: const EdgeInsets.all(20),
+                      padding: AppUIConfig.components.cardPadding,
                       border: Border.all(color: gradeColor.withOpacity(0.3), width: 1.5),
                       child: Row(
                         children: [
@@ -65,7 +64,7 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
                                 begin: Alignment.topLeft,
                                 end: Alignment.bottomRight,
                               ),
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: AppUIConfig.components.containerRadius,
                               boxShadow: [
                                 BoxShadow(
                                   color: gradeColor.withOpacity(0.4),
@@ -77,33 +76,23 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
                             child: Center(
                               child: Text(
                                 result.grade,
-                                style: AppUIConfig.primaryFont.copyWith(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  shadows: [
-                                    Shadow(
-                                      color: Colors.black.withOpacity(0.3),
-                                      blurRadius: 8,
-                                    ),
-                                  ],
-                                ),
+                                style: AppUIConfig.text.heading2.copyWith(fontSize: 28),
                               ),
                             ),
                           ),
-                          const SizedBox(width: 20),
+                          SizedBox(width: AppUIConfig.metrics.spacingLarge),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   result.exam.subject,
-                                  style: AppConfig.text.heading3,
+                                  style: AppUIConfig.text.heading3,
                                 ),
-                                const SizedBox(height: 4),
+                                SizedBox(height: AppUIConfig.metrics.spacingTiny),
                                 Text(
                                   result.exam.title,
-                                  style: AppConfig.text.body,
+                                  style: AppUIConfig.text.body,
                                 ),
                               ],
                             ),
@@ -113,11 +102,11 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
                             children: [
                               Text(
                                 '${result.marksObtained.toInt()}',
-                                style: AppConfig.text.heading2.copyWith(fontSize: 22, letterSpacing: -1),
+                                style: AppUIConfig.text.heading2.copyWith(fontSize: 22, letterSpacing: -1),
                               ),
                               Text(
                                 '/${result.maxMarks.toInt()}',
-                                style: AppConfig.text.caption.copyWith(
+                                style: AppUIConfig.text.caption.copyWith(
                                   fontSize: 12,
                                 ),
                               ),
@@ -137,9 +126,9 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
   }
 
   Color _getGradeColor(String grade) {
-    if (grade.startsWith('A')) return AppConfig.colors.success;
-    if (grade.startsWith('B')) return AppConfig.colors.info;
-    if (grade.startsWith('C')) return AppConfig.colors.warning;
-    return AppConfig.colors.danger;
+    if (grade.startsWith('A')) return AppUIConfig.colors.success;
+    if (grade.startsWith('B')) return AppUIConfig.colors.info;
+    if (grade.startsWith('C')) return AppUIConfig.colors.warning;
+    return AppUIConfig.colors.danger;
   }
 }

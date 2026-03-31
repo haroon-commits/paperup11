@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:paperup1/common_widgets/liquid_header.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MessagesPage extends StatelessWidget {
   const MessagesPage({super.key});
@@ -44,15 +43,15 @@ class MessagesPage extends StatelessWidget {
           ),
           Expanded(
             child: ListView.separated(
-              padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
+              padding: AppUIConfig.components.pagePadding,
               itemCount: announcements.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 16),
+              separatorBuilder: (context, index) => SizedBox(height: AppUIConfig.metrics.spacingDefault),
               itemBuilder: (context, index) {
                 final item = announcements[index];
                 final category = item['category'] as String;
 
                 return GlassContainer(
-                  padding: const EdgeInsets.all(20),
+                  padding: AppUIConfig.components.cardPadding,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -62,40 +61,40 @@ class MessagesPage extends StatelessWidget {
                           _buildCategoryBadge(category),
                           Text(
                             DateFormat('MMM dd, hh:mm a').format(item['date'] as DateTime),
-                            style: const TextStyle(fontSize: 11, color: Colors.grey, fontWeight: FontWeight.w500),
+                            style: AppUIConfig.text.caption.copyWith(
+                              color: AppUIConfig.colors.textMuted,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ],
                       ),
-                      const SizedBox(height: 12),
+                      SizedBox(height: AppUIConfig.metrics.spacingSmall),
                       Text(
                         item['title'] as String,
-                        style: AppUIConfig.primaryFont.copyWith(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                        style: AppUIConfig.text.heading3.copyWith(
+                          color: AppUIConfig.colors.white,
                           shadows: [
                             Shadow(
-                              color: Colors.black.withOpacity(0.3),
+                              color: AppUIConfig.colors.shadowDark,
                               blurRadius: 4,
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 6),
+                      SizedBox(height: AppUIConfig.metrics.spacingTiny),
                       Text(
                         item['content'] as String,
-                        style: TextStyle(
-                          color: Colors.white.withOpacity(0.8),
-                          height: 1.4,
+                        style: AppUIConfig.text.bodyBright.copyWith(
+                          color: AppUIConfig.colors.white.withOpacity(0.8),
                           shadows: [
                             Shadow(
-                              color: Colors.black.withOpacity(0.2),
+                              color: AppUIConfig.colors.shadowDark,
                               blurRadius: 2,
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: AppUIConfig.metrics.spacingDefault),
                       Row(
                         children: [
                           CircleAvatar(
@@ -103,10 +102,12 @@ class MessagesPage extends StatelessWidget {
                             backgroundColor: Theme.of(context).primaryColor.withOpacity(0.1),
                             child: Icon(Icons.school, size: 12, color: Theme.of(context).primaryColor),
                           ),
-                          const SizedBox(width: 8),
+                          SizedBox(width: AppUIConfig.metrics.spacingSmall),
                           Text(
                             item['sender'] as String,
-                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Colors.grey),
+                            style: AppUIConfig.text.caption.copyWith(
+                              color: AppUIConfig.colors.textMuted,
+                            ),
                           ),
                         ],
                       ),
@@ -125,24 +126,27 @@ class MessagesPage extends StatelessWidget {
     Color color;
     switch (category) {
       case 'Holiday':
-        color = Colors.red;
+        color = AppUIConfig.colors.danger;
         break;
       case 'Event':
-        color = Colors.blue;
+        color = AppUIConfig.colors.info;
         break;
       default:
-        color = Colors.orange;
+        color = AppUIConfig.colors.warning;
     }
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      padding: EdgeInsets.symmetric(
+        horizontal: AppUIConfig.metrics.paddingTiny, 
+        vertical: 4
+      ),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [color, color.withOpacity(0.8)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(AppUIConfig.metrics.radiusSmall),
         boxShadow: [
           BoxShadow(
             color: color.withOpacity(0.2),
@@ -153,11 +157,8 @@ class MessagesPage extends StatelessWidget {
       ),
       child: Text(
         category.toUpperCase(),
-        style: AppUIConfig.primaryFont.copyWith(
-          fontSize: 10,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          letterSpacing: 1,
+        style: AppUIConfig.text.chip.copyWith(
+          color: AppUIConfig.colors.white,
         ),
       ),
     );

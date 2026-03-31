@@ -24,13 +24,13 @@ class LiquidHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: height,
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 30),
+      padding: EdgeInsets.symmetric(
+        horizontal: AppUIConfig.metrics.paddingLarge, 
+        vertical: AppUIConfig.metrics.spacingExtraLarge
+      ),
       decoration: BoxDecoration(
         gradient: design.liquidGradient,
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(32),
-          bottomRight: Radius.circular(32),
-        ),
+        borderRadius: AppUIConfig.components.bottomSheetRadius,
       ),
       child: Stack(
         clipBehavior: Clip.none,
@@ -44,7 +44,7 @@ class LiquidHeader extends StatelessWidget {
               height: 180,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.08),
+                color: AppUIConfig.colors.white.withOpacity(0.08),
               ),
             ),
           ),
@@ -57,7 +57,7 @@ class LiquidHeader extends StatelessWidget {
               height: 140,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.black.withOpacity(0.05),
+                color: AppUIConfig.colors.black.withOpacity(0.05),
               ),
             ),
           ),
@@ -68,10 +68,8 @@ class LiquidHeader extends StatelessWidget {
               if (subtitle != null)
                 Text(
                   subtitle!.toUpperCase(),
-                  style: AppUIConfig.primaryFont.copyWith(
-                    color: Colors.white.withOpacity(0.6),
-                    fontSize: 10,
-                    fontWeight: FontWeight.w900,
+                  style: AppUIConfig.text.caption.copyWith(
+                    color: AppUIConfig.colors.white.withOpacity(0.6),
                     letterSpacing: 2,
                   ),
                 ),
@@ -81,11 +79,9 @@ class LiquidHeader extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: AppUIConfig.primaryFont.copyWith(
-                      color: Colors.white,
+                    style: AppUIConfig.text.heading1.copyWith(
+                      color: AppUIConfig.colors.white,
                       fontSize: 34,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: -1,
                     ),
                   ),
                   if (trailing != null) trailing!,

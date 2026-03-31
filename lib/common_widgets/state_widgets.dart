@@ -5,13 +5,13 @@ import 'package:shimmer/shimmer.dart';
 class ShimmerLoading extends StatelessWidget {
   final double width;
   final double height;
-  final double borderRadius;
+  final double? borderRadius;
 
   const ShimmerLoading({
     super.key,
     required this.width,
     required this.height,
-    this.borderRadius = 16,
+    this.borderRadius,
   });
 
   @override
@@ -25,8 +25,8 @@ class ShimmerLoading extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(borderRadius),
+          color: AppUIConfig.colors.white,
+          borderRadius: BorderRadius.circular(borderRadius ?? AppUIConfig.metrics.radiusDefault),
         ),
       ),
     );
@@ -49,28 +49,28 @@ class EmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(40.0),
+        padding: EdgeInsets.all(AppUIConfig.metrics.spacingExtraLarge),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
+              padding: EdgeInsets.all(AppUIConfig.metrics.paddingLarge),
               decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor.withOpacity(0.05),
                 shape: BoxShape.circle,
               ),
               child: Icon(icon, size: 64, color: Theme.of(context).primaryColor.withOpacity(0.2)),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: AppUIConfig.metrics.spacingLarge),
             Text(
               title,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: AppUIConfig.text.heading2,
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: AppUIConfig.metrics.spacingSmall),
             Text(
               message,
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey[600], fontSize: 14),
+              style: AppUIConfig.text.body,
             ),
           ],
         ),

@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:paperup1/modules/homework/presentation/state/homework_provider.dart';
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:paperup1/common_widgets/liquid_header.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
 
@@ -36,16 +35,16 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
     final userRole = ref.watch(authProvider).user?.role ?? 'student';
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppUIConfig.colors.transparent,
       body: PageBackground(
         child: Column(
         children: [
-                                     LiquidHeader(
-            title: AppConfig.strings.homeworkTitle,
-            subtitle: AppConfig.strings.homeworkSubtitle,
+             LiquidHeader(
+            title: AppUIConfig.strings.homeworkTitle,
+            subtitle: AppUIConfig.strings.homeworkSubtitle,
             trailing: userRole == 'teacher'
                 ? IconButton(
-                    icon: Icon(Icons.add_task, color: AppConfig.colors.textMain, size: AppConfig.metrics.iconSizeLarge),
+                    icon: Icon(Icons.add_task, color: AppUIConfig.colors.textMain, size: AppUIConfig.metrics.iconSizeLarge),
                     onPressed: () {},
                   )
                 : null,
@@ -56,15 +55,15 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
               error: (err, stack) => Center(child: Text('Error: $err')),
               data: (assignments) {
                 return ListView.separated(
-                  padding: const EdgeInsets.all(AppUIConfig.defaultPadding),
+                  padding: AppUIConfig.components.pagePadding,
                   itemCount: assignments.length,
-                  separatorBuilder: (context, index) => const SizedBox(height: 16),
+                  separatorBuilder: (context, index) => SizedBox(height: AppUIConfig.metrics.spacingDefault),
                   itemBuilder: (context, index) {
                     final item = assignments[index];
                     final statusColor = _getStatusColor(item.status);
 
                     return GlassContainer(
-                      padding: const EdgeInsets.all(20),
+                      padding: AppUIConfig.components.cardPadding,
                       border: Border.all(color: statusColor.withOpacity(0.3), width: 1.5),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,39 +73,39 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
                             children: [
                                Container(
                                  padding: EdgeInsets.symmetric(
-                                     horizontal: AppConfig.metrics.paddingSmall,
+                                     horizontal: AppUIConfig.metrics.paddingSmall,
                                      vertical: 4),
                                  decoration: BoxDecoration(
-                                   color: AppConfig.colors.cardBackground,
-                                   borderRadius: BorderRadius.circular(AppConfig.metrics.radiusSmall),
-                                   border: Border.all(color: AppConfig.colors.cardBorder),
+                                   color: AppUIConfig.colors.cardBackground,
+                                   borderRadius: BorderRadius.circular(AppUIConfig.metrics.radiusSmall),
+                                   border: Border.all(color: AppUIConfig.colors.cardBorder),
                                  ),
                                  child: Text(
                                    item.subject.toUpperCase(),
-                                   style: AppConfig.text.chip,
+                                   style: AppUIConfig.text.chip,
                                  ),
                                ),
                               _getStatusChip(item.status),
                             ],
                           ),
-                          const SizedBox(height: 12),
+                          SizedBox(height: AppUIConfig.metrics.spacingSmall),
                            Text(
                              item.title,
-                             style: AppConfig.text.heading2,
+                             style: AppUIConfig.text.heading2,
                            ),
-                          const SizedBox(height: 8),
+                          SizedBox(height: AppUIConfig.metrics.spacingSmall),
                            Text(
                              item.description,
-                             style: AppConfig.text.body,
+                             style: AppUIConfig.text.body,
                            ),
-                          const SizedBox(height: 20),
+                          SizedBox(height: AppUIConfig.metrics.spacingDefault),
                           Row(
                             children: [
-                               Icon(Icons.calendar_today_outlined, size: AppConfig.metrics.iconSizeSmall, color: AppConfig.colors.textLight),
-                               SizedBox(width: AppConfig.metrics.spacingSmall),
+                               Icon(Icons.calendar_today_outlined, size: AppUIConfig.metrics.iconSizeSmall, color: AppUIConfig.colors.textLight),
+                               SizedBox(width: AppUIConfig.metrics.spacingSmall),
                                Text(
-                                 '${AppConfig.strings.dueDatePrefix}${DateFormat('MMM dd, yyyy').format(item.dueDate).toUpperCase()}',
-                                 style: AppConfig.text.caption,
+                                 '${AppUIConfig.strings.dueDatePrefix}${DateFormat('MMM dd, yyyy').format(item.dueDate).toUpperCase()}',
+                                 style: AppUIConfig.text.caption,
                                ),
                               const Spacer(),
                               if (userRole == 'student' && item.status == 'Pending')
@@ -114,12 +113,12 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: statusColor,
-                                    foregroundColor: AppConfig.colors.textMain,
+                                    foregroundColor: AppUIConfig.colors.textMain,
                                     elevation: 0,
-                                    padding: EdgeInsets.symmetric(horizontal: AppConfig.metrics.spacingDefault, vertical: AppConfig.metrics.spacingSmall),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppConfig.metrics.radiusDefault)),
+                                    padding: EdgeInsets.symmetric(horizontal: AppUIConfig.metrics.spacingDefault, vertical: AppUIConfig.metrics.spacingTiny),
+                                    shape: RoundedRectangleBorder(borderRadius: AppUIConfig.components.inputRadius),
                                   ),
-                                  child: Text(AppConfig.strings.submitButton),
+                                  child: Text(AppUIConfig.strings.submitButton),
                                 ),
                             ],
                           ),
@@ -140,25 +139,25 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
   Color _getStatusColor(String status) {
     switch (status) {
       case 'Submitted':
-        return AppConfig.colors.info;
+        return AppUIConfig.colors.info;
       case 'Evaluated':
-        return AppConfig.colors.success;
+        return AppUIConfig.colors.success;
       default:
-        return AppConfig.colors.warning;
+        return AppUIConfig.colors.warning;
     }
   }
 
   Widget _getStatusChip(String status) {
     final color = _getStatusColor(status);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: AppUIConfig.metrics.paddingTiny, vertical: 4),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [color, color.withOpacity(0.8)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(AppUIConfig.metrics.radiusSmall),
         boxShadow: [
           BoxShadow(
             color: color.withOpacity(0.2),
@@ -169,7 +168,7 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
       ),
       child: Text(
         status.toUpperCase(),
-        style: AppConfig.text.chip,
+        style: AppUIConfig.text.chip,
       ),
     );
   }

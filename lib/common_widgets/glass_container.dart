@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:paperup1/core/theme/design_system.dart';
+import 'package:paperup1/core/theme/app_ui_config.dart';
 
 class GlassContainer extends StatelessWidget {
   final Widget child;
@@ -29,6 +30,7 @@ class GlassContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AppDesignSystem design = Theme.of(context).design;
+    final fallbackRadius = BorderRadius.circular(AppUIConfig.metrics.radiusLarge);
 
     return Container(
       width: width,
@@ -37,14 +39,14 @@ class GlassContainer extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: AppUIConfig.colors.black.withOpacity(0.05),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
         ],
       ),
       child: ClipRRect(
-        borderRadius: borderRadius ?? BorderRadius.circular(design.cardRadius),
+        borderRadius: borderRadius ?? fallbackRadius,
         child: BackdropFilter(
           filter: ImageFilter.blur(
             sigmaX: blur ?? design.cardBlur,
@@ -53,17 +55,17 @@ class GlassContainer extends StatelessWidget {
           child: Container(
             padding: padding,
             decoration: BoxDecoration(
-              color: color ?? design.glassBackground,
-              borderRadius: borderRadius ?? BorderRadius.circular(design.cardRadius),
-              border: border ?? Border.all(color: design.glassBorder, width: 1.5),
+              color: color ?? AppUIConfig.colors.cardBackground,
+              borderRadius: borderRadius ?? fallbackRadius,
+              border: border ?? Border.all(color: AppUIConfig.colors.cardBorder, width: 1.5),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: AppUIConfig.colors.black.withOpacity(0.05),
                   blurRadius: 20,
                   offset: const Offset(0, 10),
                 ),
                 BoxShadow(
-                  color: Colors.white.withOpacity(0.05),
+                  color: AppUIConfig.colors.white.withOpacity(0.05),
                   blurRadius: 1,
                   offset: const Offset(-1, -1), // Top-left inner glow
                 ),
