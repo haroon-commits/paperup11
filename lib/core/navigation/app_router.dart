@@ -12,12 +12,14 @@ import 'package:paperup1/modules/timetable/presentation/pages/timetable_page.dar
 import 'package:paperup1/modules/auth/presentation/pages/profile_page.dart';
 import 'package:paperup1/modules/auth/presentation/pages/theme_settings_page.dart';
 import 'package:paperup1/modules/dashboard/presentation/pages/home_shell.dart';
+import 'package:paperup1/core/navigation/not_found_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authProvider);
 
   return GoRouter(
     initialLocation: '/login',
+    errorBuilder: (context, state) => NotFoundPage(location: state.uri.toString()),
     redirect: (context, state) {
       final isLoggedIn = authState.user != null;
       final isLoggingIn = state.matchedLocation == '/login';
