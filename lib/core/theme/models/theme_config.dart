@@ -18,7 +18,6 @@ class ThemeConfig {
 
   Map<String, dynamic> toJson() => {
     'style': style.name,
-    // ignore: deprecated_member_use
     'primaryColor': primaryColor.value,
     'useAnimatedBackground': useAnimatedBackground,
     'borderRadius': borderRadius,
