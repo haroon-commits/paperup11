@@ -86,14 +86,14 @@ class _FeesPageState extends ConsumerState<FeesPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back_ios, color: Colors.white, size: 20),
+                    icon: Icon(Icons.arrow_back_ios, color: AppConfig.colors.textMain, size: AppConfig.metrics.iconSizeDefault),
                     onPressed: () => context.pop(),
                   ),
-                  const Text(
-                    'Finance',
-                    style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 1.1),
+                  Text(
+                    AppConfig.strings.feesTitle,
+                    style: AppConfig.text.heading3,
                   ),
-                  const SizedBox(width: 48),
+                  SizedBox(width: 48),
                 ],
               ),
               const Spacer(),
@@ -109,7 +109,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.white.withOpacity(0.15),
+                            color: AppConfig.colors.glassHighlight,
                             blurRadius: 50,
                             spreadRadius: 10,
                           ),
@@ -120,15 +120,15 @@ class _FeesPageState extends ConsumerState<FeesPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'AVAILABLE BALANCE',
-                        style: TextStyle(color: Colors.white60, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 2),
+                      Text(
+                        AppConfig.strings.availableBalance,
+                        style: AppConfig.text.caption.copyWith(letterSpacing: 2),
                       ),
                       const SizedBox(height: 8),
                       Text(
                         '\$${totalDues.toStringAsFixed(2)}',
-                        style: AppUIConfig.primaryFont.copyWith(
-                          color: Colors.white,
+                        style: AppConfig.text.fontBase.copyWith(
+                          color: AppConfig.colors.textMain,
                           fontSize: 44,
                           fontWeight: FontWeight.bold,
                           letterSpacing: -1,
@@ -148,7 +148,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
 
   Widget _buildFeeCard(BuildContext context, dynamic fee) {
     final isPaid = fee.status == 'Paid';
-    final accentColor = isPaid ? const Color(0xFF34C759) : const Color(0xFFFF9500);
+    final accentColor = isPaid ? AppConfig.colors.success : AppConfig.colors.warning;
     final design = Theme.of(context).design;
 
     return GlassContainer(
@@ -177,7 +177,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
             ),
             child: Icon(
               isPaid ? Icons.check_circle_rounded : Icons.pending_rounded,
-              color: Colors.white,
+              color: AppConfig.colors.white,
               size: 26,
             ),
           ),
@@ -188,36 +188,14 @@ class _FeesPageState extends ConsumerState<FeesPage> {
               children: [
                 Text(
                   fee.title,
-                  style: AppUIConfig.primaryFont.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.white,
-                    shadows: [
-                      Shadow(
-                        color: Colors.black.withOpacity(0.3),
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
+                  style: AppConfig.text.heading2.copyWith(fontSize: 18),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   isPaid
-                      ? 'PAID ON ${DateFormat('MMM dd, yyyy').format(fee.paymentDate!).toUpperCase()}'
-                      : 'DUE BY ${DateFormat('MMM dd, yyyy').format(fee.dueDate).toUpperCase()}',
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.7),
-                    fontSize: 10,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 0.5,
-                    shadows: [
-                      Shadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 2,
-                      ),
-                    ],
-                  ),
+                      ? '${AppConfig.strings.paidOnPrefix}${DateFormat('MMM dd, yyyy').format(fee.paymentDate!).toUpperCase()}'
+                      : '${AppConfig.strings.dueByPrefix}${DateFormat('MMM dd, yyyy').format(fee.dueDate).toUpperCase()}',
+                  style: AppConfig.text.caption,
                 ),
               ],
             ),
@@ -227,17 +205,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
             children: [
               Text(
                 '\$${fee.amount.toStringAsFixed(0)}',
-                style: AppUIConfig.primaryFont.copyWith(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                  color: Colors.white,
-                  shadows: [
-                    Shadow(
-                      color: Colors.black.withOpacity(0.3),
-                      blurRadius: 6,
-                    ),
-                  ],
-                ),
+                style: AppConfig.text.heading2.copyWith(fontSize: 22),
               ),
               if (!isPaid)
                 Container(
@@ -248,12 +216,10 @@ class _FeesPageState extends ConsumerState<FeesPage> {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
-                    'PAY',
-                    style: TextStyle(
+                    AppConfig.strings.payNow.toUpperCase(),
+                    style: AppConfig.text.chip.copyWith(
                       color: design.primary,
                       fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
                     ),
                   ),
                 ),

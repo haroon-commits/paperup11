@@ -34,9 +34,9 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
     return Scaffold(
       body: Column(
         children: [
-          const LiquidHeader(
-            title: 'Results',
-            subtitle: 'Academic Achievement',
+          LiquidHeader(
+            title: AppConfig.strings.resultsTitle,
+            subtitle: AppConfig.strings.resultsSubtitle,
           ),
           Expanded(
             child: resultsState.when(
@@ -98,31 +98,12 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
                               children: [
                                 Text(
                                   result.exam.subject,
-                                  style: AppUIConfig.primaryFont.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    shadows: [
-                                      Shadow(
-                                        color: Colors.black.withOpacity(0.3),
-                                        blurRadius: 4,
-                                      ),
-                                    ],
-                                  ),
+                                  style: AppConfig.text.heading3,
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
                                   result.exam.title,
-                                  style: TextStyle(
-                                    color: Colors.white.withOpacity(0.7),
-                                    fontSize: 13,
-                                    shadows: [
-                                      Shadow(
-                                        color: Colors.black.withOpacity(0.2),
-                                        blurRadius: 2,
-                                      ),
-                                    ],
-                                  ),
+                                  style: AppConfig.text.body,
                                 ),
                               ],
                             ),
@@ -132,25 +113,12 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
                             children: [
                               Text(
                                 '${result.marksObtained.toInt()}',
-                                style: AppUIConfig.primaryFont.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 22,
-                                  color: Colors.white,
-                                  letterSpacing: -1,
-                                  shadows: [
-                                    Shadow(
-                                      color: Colors.black.withOpacity(0.3),
-                                      blurRadius: 4,
-                                    ),
-                                  ],
-                                ),
+                                style: AppConfig.text.heading2.copyWith(fontSize: 22, letterSpacing: -1),
                               ),
                               Text(
                                 '/${result.maxMarks.toInt()}',
-                                style: TextStyle(
-                                  color: Colors.white.withOpacity(0.5),
+                                style: AppConfig.text.caption.copyWith(
                                   fontSize: 12,
-                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ],
@@ -169,9 +137,9 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
   }
 
   Color _getGradeColor(String grade) {
-    if (grade.startsWith('A')) return const Color(0xFF34C759); // Premium Green
-    if (grade.startsWith('B')) return const Color(0xFF007AFF); // Premium Blue
-    if (grade.startsWith('C')) return const Color(0xFFFF9500); // Premium Orange
-    return const Color(0xFFFF3B30); // Premium Red
+    if (grade.startsWith('A')) return AppConfig.colors.success;
+    if (grade.startsWith('B')) return AppConfig.colors.info;
+    if (grade.startsWith('C')) return AppConfig.colors.warning;
+    return AppConfig.colors.danger;
   }
 }

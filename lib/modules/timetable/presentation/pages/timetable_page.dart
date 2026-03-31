@@ -11,19 +11,19 @@ class TimetablePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final schedule = [
-      {'time': '08:30 AM', 'subject': 'Mathematics', 'room': 'Room 101', 'color': const Color(0xFF007AFF)},
-      {'time': '09:30 AM', 'subject': 'Physics', 'room': 'Lab A', 'color': const Color(0xFF5856D6)},
-      {'time': '10:30 AM', 'subject': 'Break', 'room': 'Cafeteria', 'color': const Color(0xFF34C759)},
-      {'time': '11:00 AM', 'subject': 'English', 'room': 'Room 203', 'color': const Color(0xFFAF52DE)},
-      {'time': '12:00 PM', 'subject': 'Chemistry', 'room': 'Lab B', 'color': const Color(0xFFFF2D55)},
+      {'time': '08:30 AM', 'subject': 'Mathematics', 'room': 'Room 101', 'color': AppConfig.colors.subjectMath},
+      {'time': '09:30 AM', 'subject': 'Physics', 'room': 'Lab A', 'color': AppConfig.colors.subjectPhysics},
+      {'time': '10:30 AM', 'subject': 'Break', 'room': 'Cafeteria', 'color': AppConfig.colors.subjectBreak},
+      {'time': '11:00 AM', 'subject': 'English', 'room': 'Room 203', 'color': AppConfig.colors.subjectEnglish},
+      {'time': '12:00 PM', 'subject': 'Chemistry', 'room': 'Lab B', 'color': AppConfig.colors.subjectChemistry},
     ];
 
     return Scaffold(
       body: Column(
         children: [
-          const LiquidHeader(
-            title: 'Timetable',
-            subtitle: 'Your Daily Schedule',
+          LiquidHeader(
+            title: AppConfig.strings.timetableTitle,
+            subtitle: AppConfig.strings.timetableSubtitle,
           ),
           Container(
             padding: const EdgeInsets.symmetric(vertical: 20),
@@ -81,17 +81,7 @@ class TimetablePage extends StatelessWidget {
                         child: Center(
                           child: Text(
                             item['time'] as String,
-                            style: AppUIConfig.primaryFont.copyWith(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.black.withOpacity(0.2),
-                                  blurRadius: 2,
-                                ),
-                              ],
-                            ),
+                            style: AppConfig.text.chip,
                           ),
                         ),
                       ),
@@ -102,26 +92,14 @@ class TimetablePage extends StatelessWidget {
                           children: [
                             Text(
                               item['subject'] as String,
-                              style: AppUIConfig.primaryFont.copyWith(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                shadows: [
-                                  Shadow(
-                                    color: Colors.black.withOpacity(0.3),
-                                    blurRadius: 4,
-                                  ),
-                                ],
-                              ),
+                              style: AppConfig.text.heading3,
                             ),
                             const SizedBox(height: 4),
                             Text(
                               item['room'] as String,
-                              style: TextStyle(
-                                color: Colors.white.withOpacity(0.6),
+                              style: AppConfig.text.caption.copyWith(
+                                color: AppConfig.colors.textLight,
                                 fontSize: 13,
-                                fontWeight: FontWeight.w500,
-                                letterSpacing: 0.5,
                               ),
                             ),
                           ],
@@ -129,8 +107,8 @@ class TimetablePage extends StatelessWidget {
                       ),
                       Icon(
                         isBreak ? Icons.coffee_rounded : Icons.chevron_right,
-                        color: Colors.white.withOpacity(0.3),
-                        size: 20,
+                        color: AppConfig.colors.cardBorder,
+                        size: AppConfig.metrics.iconSizeDefault,
                       ),
                     ],
                   ),
@@ -155,19 +133,17 @@ class _DayChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: isSelected ? Colors.white.withOpacity(0.15) : Colors.white.withOpacity(0.05),
+        color: isSelected ? AppConfig.colors.glassHighlight : AppConfig.colors.primaryBackground.withOpacity(0.05),
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: isSelected ? Colors.white.withOpacity(0.3) : Colors.white.withOpacity(0.1),
+          color: isSelected ? AppConfig.colors.cardBorder : AppConfig.colors.primaryBackground.withOpacity(0.1),
         ),
       ),
       child: Text(
         label.toUpperCase(),
-        style: AppUIConfig.primaryFont.copyWith(
+        style: AppConfig.text.chip.copyWith(
           fontWeight: isSelected ? FontWeight.w900 : FontWeight.bold,
-          fontSize: 11,
-          color: isSelected ? Colors.white : Colors.white.withOpacity(0.5),
-          letterSpacing: 1,
+          color: isSelected ? AppConfig.colors.textMain : AppConfig.colors.textLight,
         ),
       ),
     );

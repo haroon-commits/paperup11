@@ -41,11 +41,11 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
         child: Column(
         children: [
                                      LiquidHeader(
-            title: 'Homework',
-            subtitle: 'Assignments & Tasks',
+            title: AppConfig.strings.homeworkTitle,
+            subtitle: AppConfig.strings.homeworkSubtitle,
             trailing: userRole == 'teacher'
                 ? IconButton(
-                    icon: const Icon(Icons.add_task, color: Colors.white, size: 28),
+                    icon: Icon(Icons.add_task, color: AppConfig.colors.textMain, size: AppConfig.metrics.iconSizeLarge),
                     onPressed: () {},
                   )
                 : null,
@@ -73,20 +73,17 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                                Container(
-                                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                 padding: EdgeInsets.symmetric(
+                                     horizontal: AppConfig.metrics.paddingSmall,
+                                     vertical: 4),
                                  decoration: BoxDecoration(
-                                   color: Colors.white.withOpacity(0.1),
-                                   borderRadius: BorderRadius.circular(8),
-                                   border: Border.all(color: Colors.white.withOpacity(0.2)),
+                                   color: AppConfig.colors.cardBackground,
+                                   borderRadius: BorderRadius.circular(AppConfig.metrics.radiusSmall),
+                                   border: Border.all(color: AppConfig.colors.cardBorder),
                                  ),
                                  child: Text(
                                    item.subject.toUpperCase(),
-                                   style: AppUIConfig.primaryFont.copyWith(
-                                     fontSize: 10,
-                                     fontWeight: FontWeight.w900,
-                                     color: Colors.white.withOpacity(0.9),
-                                     letterSpacing: 1,
-                                   ),
+                                   style: AppConfig.text.chip,
                                  ),
                                ),
                               _getStatusChip(item.status),
@@ -95,47 +92,21 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
                           const SizedBox(height: 12),
                            Text(
                              item.title,
-                             style: AppUIConfig.primaryFont.copyWith(
-                               fontSize: 20,
-                               fontWeight: FontWeight.bold,
-                               color: Colors.white,
-                               shadows: [
-                                 Shadow(
-                                   color: Colors.black.withOpacity(0.3),
-                                   blurRadius: 4,
-                                   offset: const Offset(0, 2),
-                                 ),
-                               ],
-                             ),
+                             style: AppConfig.text.heading2,
                            ),
                           const SizedBox(height: 8),
                            Text(
                              item.description,
-                             style: TextStyle(
-                               color: Colors.white.withOpacity(0.7),
-                               fontSize: 14,
-                               height: 1.4,
-                               shadows: [
-                                 Shadow(
-                                   color: Colors.black.withOpacity(0.2),
-                                   blurRadius: 2,
-                                 ),
-                               ],
-                             ),
+                             style: AppConfig.text.body,
                            ),
                           const SizedBox(height: 20),
                           Row(
                             children: [
-                               const Icon(Icons.calendar_today_outlined, size: 14, color: Colors.white70),
-                               const SizedBox(width: 8),
+                               Icon(Icons.calendar_today_outlined, size: AppConfig.metrics.iconSizeSmall, color: AppConfig.colors.textLight),
+                               SizedBox(width: AppConfig.metrics.spacingSmall),
                                Text(
-                                 'DUE: ${DateFormat('MMM dd, yyyy').format(item.dueDate).toUpperCase()}',
-                                 style: AppUIConfig.primaryFont.copyWith(
-                                   fontSize: 11,
-                                   color: Colors.white.withOpacity(0.6),
-                                   fontWeight: FontWeight.w900,
-                                   letterSpacing: 0.5,
-                                 ),
+                                 '${AppConfig.strings.dueDatePrefix}${DateFormat('MMM dd, yyyy').format(item.dueDate).toUpperCase()}',
+                                 style: AppConfig.text.caption,
                                ),
                               const Spacer(),
                               if (userRole == 'student' && item.status == 'Pending')
@@ -143,12 +114,12 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: statusColor,
-                                    foregroundColor: Colors.white,
+                                    foregroundColor: AppConfig.colors.textMain,
                                     elevation: 0,
-                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                    padding: EdgeInsets.symmetric(horizontal: AppConfig.metrics.spacingDefault, vertical: AppConfig.metrics.spacingSmall),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppConfig.metrics.radiusDefault)),
                                   ),
-                                  child: const Text('Submit Now'),
+                                  child: Text(AppConfig.strings.submitButton),
                                 ),
                             ],
                           ),
@@ -169,11 +140,11 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
   Color _getStatusColor(String status) {
     switch (status) {
       case 'Submitted':
-        return const Color(0xFF007AFF); // Premium Blue
+        return AppConfig.colors.info;
       case 'Evaluated':
-        return const Color(0xFF34C759); // Premium Green
+        return AppConfig.colors.success;
       default:
-        return const Color(0xFFFF9500); // Premium Orange
+        return AppConfig.colors.warning;
     }
   }
 
@@ -198,12 +169,7 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
       ),
       child: Text(
         status.toUpperCase(),
-        style: AppUIConfig.primaryFont.copyWith(
-          fontSize: 10,
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          letterSpacing: 1,
-        ),
+        style: AppConfig.text.chip,
       ),
     );
   }
