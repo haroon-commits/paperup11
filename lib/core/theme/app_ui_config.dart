@@ -326,7 +326,7 @@ class _AppStrings {
   final String errorPrefix = 'Error:';
 
   // Auth / Login
-  final String loginSubtitle = 'THE FUTUR OF SCHOOLING';
+  final String loginSubtitle = 'THE FUTURE OF SCHOOLING';
   final String studentEmailLabel = 'STUDENT EMAIL';
   final String passwordLabel = 'PASSWORD';
   final String getStartedButton = 'GET STARTED';
