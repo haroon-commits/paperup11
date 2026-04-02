@@ -3,6 +3,7 @@ import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
+import 'package:paperup1/core/theme/responsive_utils.dart';
 
 class KPICard extends StatelessWidget {
   final String title;
@@ -44,25 +45,25 @@ class KPICard extends StatelessWidget {
                 boxShadow: [
                   BoxShadow(
                     color: color.withOpacity(0.3),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
+                    blurRadius: 12.s,
+                    offset: Offset(0, 4.s),
                   ),
                 ],
               ),
-              child: Icon(icon, color: AppUIConfig.colors.white, size: 22),
+              child: Icon(icon, color: AppUIConfig.colors.white, size: 22.s),
             ),
             const Spacer(),
             Text(
               title.toUpperCase(),
               style: AppUIConfig.text.chip.copyWith(
-                fontSize: 11,
+                fontSize: 11.s,
                 color: AppUIConfig.colors.white.withOpacity(0.9),
-                letterSpacing: 1.5,
+                letterSpacing: 1.5.s,
                 shadows: [
                   Shadow(
                     color: AppUIConfig.colors.black.withOpacity(0.3),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
+                    blurRadius: 4.s,
+                    offset: Offset(0, 2.s),
                   ),
                 ],
               ),
@@ -71,13 +72,13 @@ class KPICard extends StatelessWidget {
             Text(
               value,
               style: AppUIConfig.text.heading1.copyWith(
-                fontSize: 34,
+                fontSize: 34.s,
                 color: AppUIConfig.colors.white,
                 shadows: [
                   Shadow(
                     color: AppUIConfig.colors.black.withOpacity(0.3),
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
+                    blurRadius: 8.s,
+                    offset: Offset(0, 2.s),
                   ),
                 ],
               ),

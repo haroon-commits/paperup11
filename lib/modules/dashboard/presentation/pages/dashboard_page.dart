@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
 import 'package:paperup1/common_widgets/page_background.dart';
 import 'package:paperup1/common_widgets/school_brand_widget.dart';
+import 'package:paperup1/core/theme/responsive_utils.dart';
 
 class DashboardPage extends ConsumerWidget {
   const DashboardPage({super.key});
@@ -42,21 +43,21 @@ class DashboardPage extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         // School logo + name
-                        const SchoolBrandWidget(
-                          logoSize: 40,
+                        SchoolBrandWidget(
+                          logoSize: 40.s,
                           direction: Axis.horizontal,
                         ),
                         // Date + avatar
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            _buildAvatar(user?.avatarUrl),
+                            _buildAvatar(context, user?.avatarUrl),
                             SizedBox(height: AppUIConfig.metrics.spacingTiny),
                             Text(
                               DateFormat('EEEE, d MMM').format(DateTime.now()),
                               style: AppUIConfig.text.caption.copyWith(
                                 color: AppUIConfig.colors.textLight,
-                                fontSize: 11,
+                                fontSize: 11.s,
                               ),
                             ),
                           ],
@@ -81,7 +82,7 @@ class DashboardPage extends ConsumerWidget {
                     ).animate().fadeIn(delay: 200.ms),
                     SizedBox(height: AppUIConfig.metrics.spacingDefault),
                     SizedBox(
-                      height: 160,
+                      height: 160.s,
                       child: Row(
                         children: [
                           Expanded(
@@ -146,16 +147,21 @@ class DashboardPage extends ConsumerWidget {
     }
   }
 
-  Widget _buildAvatar(String? url) {
-    return Container(
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(color: AppUIConfig.colors.cardBorder, width: 2),
-      ),
-      child: CircleAvatar(
-        radius: AppUIConfig.metrics.radiusLarge,
-        backgroundImage: NetworkImage(url ?? 'https://ui-avatars.com/api/?name=User&background=random&color=fff'),
-        onBackgroundImageError: (_, __) {},
+  Widget _buildAvatar(BuildContext context, String? url) {
+    return InkWell(
+      onTap: () => context.push('/student-profile'),
+      borderRadius: BorderRadius.circular(AppUIConfig.metrics.radiusPill),
+      child: Container(
+        padding: const EdgeInsets.all(2), // extra spacing for the tap effect
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: AppUIConfig.colors.cardBorder, width: 2),
+        ),
+        child: CircleAvatar(
+          radius: AppUIConfig.metrics.radiusLarge,
+          backgroundImage: NetworkImage(url ?? 'https://ui-avatars.com/api/?name=User&background=random&color=fff'),
+          onBackgroundImageError: (_, __) {},
+        ),
       ),
     );
   }
@@ -168,14 +174,14 @@ class DashboardPage extends ConsumerWidget {
           AppUIConfig.strings.goodMorning,
           style: AppUIConfig.text.body.copyWith(
             color: AppUIConfig.colors.textMain.withOpacity(0.8), 
-            fontSize: 16
+            fontSize: 16.s
           ),
         ),
         Text(
           name ?? AppUIConfig.strings.fallbackStudentName,
           style: AppUIConfig.text.heading1.copyWith(
             color: AppUIConfig.colors.textMain, 
-            fontSize: 32
+            fontSize: 32.s
           ),
         ),
       ],

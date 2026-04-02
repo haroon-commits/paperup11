@@ -7,6 +7,7 @@ import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
 import 'package:paperup1/common_widgets/school_brand_widget.dart';
+import 'package:paperup1/core/theme/responsive_utils.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -67,7 +68,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           SafeArea(
             child: Center(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppUIConfig.metrics.paddingExtraLarge, 
+                  vertical: 40.s
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -83,13 +87,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     Text(
                       AppUIConfig.strings.appName,
                       style: AppUIConfig.text.heading1.copyWith(
-                        fontSize: 36,
-                        letterSpacing: -1.5,
+                        fontSize: 36.s,
+                        letterSpacing: -1.5.s,
                         shadows: [
                           Shadow(
                             color: AppUIConfig.colors.shadowDark,
-                            blurRadius: 12,
-                            offset: const Offset(0, 4),
+                            blurRadius: 12.s,
+                            offset: Offset(0, 4.s),
                           ),
                         ],
                       ),
@@ -99,32 +103,32 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       AppUIConfig.strings.loginSubtitle,
                       style: AppUIConfig.text.caption.copyWith(
                         color: AppUIConfig.colors.white.withOpacity(0.8),
-                        fontSize: 12,
-                        letterSpacing: 4,
+                        fontSize: 12.s,
+                        letterSpacing: 4.s,
                         shadows: [
                           Shadow(
                             color: AppUIConfig.colors.shadowDark,
-                            blurRadius: 4,
+                            blurRadius: 4.s,
                           ),
                         ],
                       ),
                     ).animate().fadeIn(delay: 400.ms),
                     
-                    const SizedBox(height: 48),
+                    SizedBox(height: 48.s),
 
                     // Immersive Glass Card
                     GlassContainer(
-                      padding: const EdgeInsets.all(32),
+                      padding: EdgeInsets.all(AppUIConfig.metrics.paddingExtraLarge),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _buildModernField(AppUIConfig.strings.studentEmailLabel, Icons.alternate_email_rounded, _emailController),
                           SizedBox(height: AppUIConfig.metrics.spacingLarge),
                           _buildModernField(AppUIConfig.strings.passwordLabel, Icons.lock_outline_rounded, _passwordController, isPassword: true),
-                          const SizedBox(height: 40),
+                          SizedBox(height: 40.s),
                           SizedBox(
                             width: double.infinity,
-                            height: 64,
+                            height: 64.s,
                             child: ElevatedButton(
                               onPressed: authState.isLoading ? null : () => _handleLogin(),
                               style: ElevatedButton.styleFrom(
@@ -137,7 +141,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                   ? CircularProgressIndicator(color: design.primary)
                                   : Text(
                                       AppUIConfig.strings.getStartedButton,
-                                      style: AppUIConfig.text.button.copyWith(color: design.primary, letterSpacing: 1),
+                                      style: AppUIConfig.text.button.copyWith(color: design.primary, letterSpacing: 1.s),
                                     ),
                             ),
                           ).animate().shimmer(delay: 1.seconds, duration: 2.seconds),
@@ -197,8 +201,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           label,
           style: AppUIConfig.text.caption.copyWith(
             color: AppUIConfig.colors.white.withOpacity(0.7),
-            fontSize: 10,
-            letterSpacing: 2,
+            fontSize: 10.s,
+            letterSpacing: 2.s,
           ),
         ),
         SizedBox(height: AppUIConfig.metrics.spacingSmall),
@@ -211,11 +215,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           child: TextField(
             controller: controller,
             obscureText: isPassword,
-            style: AppUIConfig.text.bodyBright.copyWith(fontSize: 16),
+            style: AppUIConfig.text.bodyBright.copyWith(fontSize: 16.s),
             decoration: InputDecoration(
-              prefixIcon: Icon(icon, color: Colors.white60, size: 22),
+              prefixIcon: Icon(icon, color: Colors.white60, size: 22.s),
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+              contentPadding: EdgeInsets.symmetric(horizontal: 20.s, vertical: 16.s),
             ),
           ),
         ),

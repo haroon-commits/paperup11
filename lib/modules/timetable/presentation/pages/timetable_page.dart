@@ -3,6 +3,7 @@ import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:paperup1/common_widgets/liquid_header.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
+import 'package:paperup1/core/theme/responsive_utils.dart';
 
 class TimetablePage extends StatelessWidget {
   const TimetablePage({super.key});
@@ -60,7 +61,7 @@ class TimetablePage extends StatelessWidget {
                   child: Row(
                     children: [
                       Container(
-                        width: 80,
+                        width: 80.s,
                         padding: EdgeInsets.symmetric(vertical: AppUIConfig.metrics.paddingTiny),
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -72,8 +73,8 @@ class TimetablePage extends StatelessWidget {
                           boxShadow: [
                             BoxShadow(
                               color: accentColor.withOpacity(0.3),
-                              blurRadius: 12,
-                              offset: const Offset(0, 4),
+                              blurRadius: 12.s,
+                              offset: Offset(0, 4.s),
                             ),
                           ],
                         ),
@@ -98,7 +99,7 @@ class TimetablePage extends StatelessWidget {
                               item['room'] as String,
                               style: AppUIConfig.text.caption.copyWith(
                                 color: AppUIConfig.colors.textLight,
-                                fontSize: 13,
+                                fontSize: 13.s,
                               ),
                             ),
                           ],

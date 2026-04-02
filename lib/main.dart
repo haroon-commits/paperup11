@@ -5,6 +5,7 @@ import 'package:paperup1/core/theme/app_theme.dart';
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:paperup1/core/theme/models/theme_config.dart';
 import 'package:paperup1/core/theme/app_ui_config.dart';
+import 'package:paperup1/core/theme/responsive_utils.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:paperup1/core/theme/state/theme_notifier.dart';
@@ -33,13 +34,20 @@ class MyApp extends ConsumerWidget {
     final role = user?.role ?? 'student';
     final themeConfig = ref.watch(themeNotifierProvider)[role] ?? ThemeConfig.studentDefault();
 
-    return MaterialApp.router(
-      title: AppUIConfig.strings.appName,
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.getThemeFromConfig(themeConfig, isDark: false),
-      darkTheme: AppTheme.getThemeFromConfig(themeConfig, isDark: true),
-      themeMode: ThemeMode.system,
-      routerConfig: router,
+    return Builder(
+      builder: (context) {
+        // Initialize the responsive engine once we have context
+        Responsive.init(context);
+        
+        return MaterialApp.router(
+          title: AppUIConfig.strings.appName,
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.getThemeFromConfig(themeConfig, isDark: false),
+          darkTheme: AppTheme.getThemeFromConfig(themeConfig, isDark: true),
+          themeMode: ThemeMode.system,
+          routerConfig: router,
+        );
+      }
     );
   }
 }

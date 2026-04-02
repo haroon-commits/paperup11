@@ -8,6 +8,7 @@ import 'package:paperup1/modules/fees/presentation/state/fees_provider.dart';
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
+import 'package:paperup1/core/theme/responsive_utils.dart';
 
 class FeesPage extends ConsumerStatefulWidget {
   const FeesPage({super.key});
@@ -67,7 +68,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
 
     return Container(
       width: double.infinity,
-      height: 240,
+      height: 240.s,
       decoration: BoxDecoration(
         gradient: Theme.of(context).design.liquidGradient,
         borderRadius: BorderRadius.only(
@@ -95,25 +96,25 @@ class _FeesPageState extends ConsumerState<FeesPage> {
                     AppUIConfig.strings.feesTitle,
                     style: AppUIConfig.text.heading3,
                   ),
-                  const SizedBox(width: 48),
+                  SizedBox(width: 48.s),
                 ],
               ),
               const Spacer(),
               Stack(
                 children: [
                   Positioned(
-                    left: 20,
-                    top: 20,
+                    left: 20.s,
+                    top: 20.s,
                     child: Container(
-                      width: 120,
-                      height: 120,
+                      width: 120.s,
+                      height: 120.s,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
                             color: AppUIConfig.colors.glassHighlight,
-                            blurRadius: 50,
-                            spreadRadius: 10,
+                            blurRadius: 50.s,
+                            spreadRadius: 10.s,
                           ),
                         ],
                       ),
@@ -131,9 +132,9 @@ class _FeesPageState extends ConsumerState<FeesPage> {
                         '\$${totalDues.toStringAsFixed(2)}',
                         style: AppUIConfig.text.fontBase.copyWith(
                           color: AppUIConfig.colors.textMain,
-                          fontSize: 44,
+                          fontSize: 44.s,
                           fontWeight: FontWeight.bold,
-                          letterSpacing: -1,
+                          letterSpacing: -1.s,
                         ),
                       ),
                     ],
@@ -160,8 +161,8 @@ class _FeesPageState extends ConsumerState<FeesPage> {
       child: Row(
         children: [
           Container(
-            height: 54,
-            width: 54,
+            height: 54.s,
+            width: 54.s,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [accentColor, accentColor.withOpacity(0.7)],
@@ -172,15 +173,15 @@ class _FeesPageState extends ConsumerState<FeesPage> {
               boxShadow: [
                 BoxShadow(
                   color: accentColor.withOpacity(0.3),
-                  blurRadius: 12,
-                  offset: const Offset(0, 4),
+                  blurRadius: 12.s,
+                  offset: Offset(0, 4.s),
                 ),
               ],
             ),
             child: Icon(
               isPaid ? Icons.check_circle_rounded : Icons.pending_rounded,
               color: AppUIConfig.colors.white,
-              size: 26,
+              size: 26.s,
             ),
           ),
           SizedBox(width: AppUIConfig.metrics.spacingDefault),
@@ -190,7 +191,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
               children: [
                 Text(
                   fee.title,
-                  style: AppUIConfig.text.heading2.copyWith(fontSize: 18),
+                  style: AppUIConfig.text.heading2.copyWith(fontSize: 18.s),
                 ),
                 SizedBox(height: AppUIConfig.metrics.spacingTiny),
                 Text(
@@ -207,7 +208,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
             children: [
               Text(
                 '\$${fee.amount.toStringAsFixed(0)}',
-                style: AppUIConfig.text.heading2.copyWith(fontSize: 22),
+                style: AppUIConfig.text.heading2.copyWith(fontSize: 22.s),
               ),
               if (!isPaid)
                 Container(
@@ -224,7 +225,7 @@ class _FeesPageState extends ConsumerState<FeesPage> {
                     AppUIConfig.strings.payNow.toUpperCase(),
                     style: AppUIConfig.text.chip.copyWith(
                       color: design.primary,
-                      fontSize: 10,
+                      fontSize: 10.s,
                     ),
                   ),
                 ),

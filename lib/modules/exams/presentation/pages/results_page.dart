@@ -6,6 +6,7 @@ import 'package:paperup1/modules/exams/presentation/state/exams_provider.dart';
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:paperup1/common_widgets/liquid_header.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
+import 'package:paperup1/core/theme/responsive_utils.dart';
 
 class ResultsPage extends ConsumerStatefulWidget {
   const ResultsPage({super.key});
@@ -56,8 +57,8 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
                       child: Row(
                         children: [
                           Container(
-                            height: 64,
-                            width: 64,
+                            height: 64.s,
+                            width: 64.s,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [gradeColor, gradeColor.withOpacity(0.7)],
@@ -68,15 +69,15 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
                               boxShadow: [
                                 BoxShadow(
                                   color: gradeColor.withOpacity(0.4),
-                                  blurRadius: 25,
-                                  spreadRadius: -8,
+                                  blurRadius: 25.s,
+                                  spreadRadius: -8.s,
                                 ),
                               ],
                             ),
                             child: Center(
                               child: Text(
                                 result.grade,
-                                style: AppUIConfig.text.heading2.copyWith(fontSize: 28),
+                                style: AppUIConfig.text.heading2.copyWith(fontSize: 28.s),
                               ),
                             ),
                           ),
@@ -102,12 +103,12 @@ class _ResultsPageState extends ConsumerState<ResultsPage> {
                             children: [
                               Text(
                                 '${result.marksObtained.toInt()}',
-                                style: AppUIConfig.text.heading2.copyWith(fontSize: 22, letterSpacing: -1),
+                                style: AppUIConfig.text.heading2.copyWith(fontSize: 22.s, letterSpacing: -1.s),
                               ),
                               Text(
                                 '/${result.maxMarks.toInt()}',
                                 style: AppUIConfig.text.caption.copyWith(
-                                  fontSize: 12,
+                                  fontSize: 12.s,
                                 ),
                               ),
                             ],

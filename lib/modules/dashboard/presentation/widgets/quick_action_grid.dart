@@ -3,6 +3,7 @@ import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
+import 'package:paperup1/core/theme/responsive_utils.dart';
 
 class QuickActionItem {
   final String label;
@@ -29,10 +30,10 @@ class QuickActionGrid extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
+        crossAxisCount: Responsive.isTablet ? 3 : 2,
         crossAxisSpacing: AppUIConfig.metrics.spacingDefault,
         mainAxisSpacing: AppUIConfig.metrics.spacingDefault,
-        childAspectRatio: 1.6,
+        childAspectRatio: Responsive.isTablet ? 2.0 : 1.6,
       ),
       itemCount: actions.length,
       itemBuilder: (context, index) {
@@ -76,7 +77,7 @@ class QuickActionGrid extends StatelessWidget {
                     child: Text(
                       action.label,
                       style: AppUIConfig.text.bodySemiBold.copyWith(
-                        fontSize: 13,
+                        fontSize: 13.s,
                         color: AppUIConfig.colors.white,
                         height: 1.1,
                         shadows: [

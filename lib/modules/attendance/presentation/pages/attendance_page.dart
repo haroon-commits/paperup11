@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:paperup1/common_widgets/liquid_header.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
+import 'package:paperup1/core/theme/responsive_utils.dart';
 
 class AttendancePage extends ConsumerStatefulWidget {
   const AttendancePage({super.key});
@@ -62,8 +63,8 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                       child: Row(
                         children: [
                           Container(
-                            height: 60,
-                            width: 60,
+                            height: 60.s,
+                            width: 60.s,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [_getStatusColor(log.status), _getStatusColor(log.status).withOpacity(0.7)],
@@ -86,7 +87,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                                   Text(
                                     log.date.day.toString(),
                                     style: AppUIConfig.text.heading1.copyWith(
-                                      fontSize: 24,
+                                      fontSize: 24.s,
                                       color: AppUIConfig.colors.white,
                                       shadows: [
                                         Shadow(
@@ -99,7 +100,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                                   Text(
                                     _getMonthName(log.date.month).substring(0, 3).toUpperCase(),
                                     style: AppUIConfig.text.caption.copyWith(
-                                      fontSize: 9,
+                                      fontSize: 9.s,
                                       color: AppUIConfig.colors.white.withOpacity(0.9),
                                     ),
                                   ),
@@ -115,7 +116,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                                 Text(
                                   DateFormat('EEEE').format(log.date),
                                   style: AppUIConfig.text.heading2.copyWith(
-                                    fontSize: 18,
+                                    fontSize: 18.s,
                                     color: AppUIConfig.colors.white,
                                   ),
                                 ),
@@ -132,7 +133,7 @@ class _AttendancePageState extends ConsumerState<AttendancePage> {
                           Container(
                             padding: EdgeInsets.symmetric(
                               horizontal: AppUIConfig.metrics.paddingTiny, 
-                              vertical: 4
+                              vertical: 4.s
                             ),
                             decoration: BoxDecoration(
                               gradient: LinearGradient(

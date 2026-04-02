@@ -12,6 +12,7 @@ import 'package:paperup1/modules/timetable/presentation/pages/timetable_page.dar
 import 'package:paperup1/modules/auth/presentation/pages/profile_page.dart';
 import 'package:paperup1/modules/dashboard/presentation/pages/home_shell.dart';
 import 'package:paperup1/core/navigation/not_found_page.dart';
+import 'package:paperup1/modules/student_profile/presentation/pages/student_profile_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authProvider);
@@ -72,6 +73,10 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/timetable',
             builder: (context, state) => const TimetablePage(),
+          ),
+          GoRoute(
+            path: '/student-profile',
+            builder: (context, state) => const StudentProfilePage(),
           ),
         ],
       ),

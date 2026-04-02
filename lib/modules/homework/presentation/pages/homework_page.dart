@@ -7,8 +7,8 @@ import 'package:paperup1/modules/homework/presentation/state/homework_provider.d
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:paperup1/common_widgets/liquid_header.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
-
 import 'package:paperup1/common_widgets/page_background.dart';
+import 'package:paperup1/core/theme/responsive_utils.dart';
 
 class HomeworkPage extends ConsumerStatefulWidget {
   const HomeworkPage({super.key});
@@ -74,7 +74,7 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
                                Container(
                                  padding: EdgeInsets.symmetric(
                                      horizontal: AppUIConfig.metrics.paddingSmall,
-                                     vertical: 4),
+                                     vertical: 4.s),
                                  decoration: BoxDecoration(
                                    color: AppUIConfig.colors.cardBackground,
                                    borderRadius: BorderRadius.circular(AppUIConfig.metrics.radiusSmall),
@@ -150,7 +150,7 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
   Widget _getStatusChip(String status) {
     final color = _getStatusColor(status);
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: AppUIConfig.metrics.paddingTiny, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: AppUIConfig.metrics.paddingTiny, vertical: 4.s),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [color, color.withOpacity(0.8)],
@@ -161,8 +161,8 @@ class _HomeworkPageState extends ConsumerState<HomeworkPage> {
         boxShadow: [
           BoxShadow(
             color: color.withOpacity(0.2),
-            blurRadius: 6,
-            offset: const Offset(0, 2),
+            blurRadius: 6.s,
+            offset: Offset(0, 2.s),
           ),
         ],
       ),

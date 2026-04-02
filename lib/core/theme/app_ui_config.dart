@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:paperup1/core/theme/responsive_utils.dart';
 
 /// Centralized Application Configuration (Design System)
 /// HOW TO USE FOR NON-DEVELOPERS:
@@ -15,7 +16,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppUIConfig {
   static const colors = _AppColors();
   static final text = _AppTextStyles();
-  static const metrics = _AppMetrics();
+  static final metrics = _AppMetrics();
   static final components = _AppComponentStyles();
   static const strings = _AppStrings();
 
@@ -128,7 +129,7 @@ class _AppTextStyles {
   /// The biggest title style, used for main page headers (e.g., "PaperUp.")
   TextStyle get heading1 => fontBase.copyWith(
     color: AppUIConfig.colors.textMain,
-    fontSize: 28,
+    fontSize: 28.s,
     fontWeight: FontWeight.bold,
     letterSpacing: -1,
   );
@@ -136,21 +137,14 @@ class _AppTextStyles {
   /// Medium-large titles, used for important section headers
   TextStyle get heading2 => fontBase.copyWith(
     color: AppUIConfig.colors.textMain,
-    fontSize: 20,
+    fontSize: 20.s,
     fontWeight: FontWeight.bold,
-    shadows: [
-      Shadow(
-        color: AppUIConfig.colors.shadowDark,
-        blurRadius: 4,
-        offset: const Offset(0, 2),
-      ),
-    ],
   );
 
   /// Smaller titles, used for card headers or subsections
   TextStyle get heading3 => fontBase.copyWith(
     color: AppUIConfig.colors.textMain,
-    fontSize: 18,
+    fontSize: 18.s,
     fontWeight: FontWeight.bold,
     letterSpacing: 1.1,
   );
@@ -159,34 +153,28 @@ class _AppTextStyles {
   /// The standard text style for regular paragraphs and descriptions
   TextStyle get body => fontBase.copyWith(
     color: AppUIConfig.colors.textMuted,
-    fontSize: 14,
+    fontSize: 14.s,
     height: 1.4,
-    shadows: [
-      const Shadow(
-        color: Color(0x33000000),
-        blurRadius: 2,
-      ), // black.withOpacity(0.2)
-    ],
   );
 
   /// A bolder version of the regular body text, used for emphasis
   TextStyle get bodySemiBold => fontBase.copyWith(
     color: AppUIConfig.colors.textMain,
-    fontSize: 14,
+    fontSize: 14.s,
     fontWeight: FontWeight.w600,
   );
 
   /// Regular text that defaults to textMain instead of textMuted.
   TextStyle get bodyBright => fontBase.copyWith(
     color: AppUIConfig.colors.textMain,
-    fontSize: 14,
+    fontSize: 14.s,
     height: 1.4,
   );
 
   // --- Captions & Badges ---
   /// Tiny text used for dates, times, or super small labels
   TextStyle get caption => fontBase.copyWith(
-    fontSize: 11,
+    fontSize: 11.s,
     color: AppUIConfig.colors.textLight,
     fontWeight: FontWeight.w900,
     letterSpacing: 0.5,
@@ -194,15 +182,15 @@ class _AppTextStyles {
 
   /// Tiny text specifically used inside small completely rounded badges (chips)
   TextStyle get chip => fontBase.copyWith(
-    fontSize: 10,
+    fontSize: 10.s,
     fontWeight: FontWeight.w900,
-    color: const Color(0xE6FFFFFF), // textMain.withOpacity(0.9)
+    color: const Color(0xE6FFFFFF),
     letterSpacing: 1,
   );
 
   /// Style applied to text inside big primary App Buttons
   TextStyle get button => fontBase.copyWith(
-    fontSize: 16,
+    fontSize: 16.s,
     fontWeight: FontWeight.w600,
     color: AppUIConfig.colors.white,
   );
@@ -214,55 +202,31 @@ class _AppTextStyles {
 class _AppMetrics {
   const _AppMetrics();
 
-  // --- Paddings (Space inside a box) ---
-  /// Very small inner spacing
-  final double paddingTiny = 8.0;
+  // --- Paddings ---
+  double get paddingTiny => 8.0.s;
+  double get paddingSmall => 12.0.s;
+  double get paddingDefault => 16.0.s;
+  double get paddingLarge => 24.0.s;
+  double get paddingExtraLarge => 32.0.s;
 
-  /// Small inner spacing, like inside a tight card
-  final double paddingSmall = 12.0;
+  // --- Spacings ---
+  double get spacingTiny => 4.0.s;
+  double get spacingSmall => 8.0.s;
+  double get spacingDefault => 16.0.s;
+  double get spacingLarge => 24.0.s;
+  double get spacingExtraLarge => 32.0.s;
 
-  /// The standard inner spacing used for most screens and containers
-  final double paddingDefault = 16.0;
-
-  /// Large inner spacing, for spacious screens or big cards
-  final double paddingLarge = 24.0;
-
-  // --- Spacings/Margins (Space between boxes) ---
-  /// Tiny gap between items (e.g. icon and text)
-  final double spacingTiny = 4.0;
-
-  /// Small gap between closely related items
-  final double spacingSmall = 8.0;
-
-  /// Standard gap between most sections
-  final double spacingDefault = 16.0;
-
-  /// Large gap to separate distinct big sections of a page
-  final double spacingLarge = 24.0;
-
-  /// Extra large gap for major sections
-  final double spacingExtraLarge = 32.0;
-
-  // --- Border Radii (How round the corners are) ---
-  /// Slightly rounded corners (e.g. small tags)
-  final double radiusSmall = 8.0;
-
-  /// Standard rounded corners for most cards and inputs
-  final double radiusDefault = 16.0;
-
-  /// Very rounded corners for major, soft-looking containers
-  final double radiusLarge = 24.0;
-
-  /// Circular corner radius used for massive rounded bases.
-  final double radiusExtraLarge = 32.0;
-
-  /// Fully rounded (pill shape), perfectly circular for avatar edges or buttons
-  final double radiusPill = 999.0;
+  // --- Border Radii ---
+  double get radiusSmall => 8.0.s;
+  double get radiusDefault => 16.0.s;
+  double get radiusLarge => 24.0.s;
+  double get radiusExtraLarge => 32.0.s;
+  double get radiusPill => 999.0;
 
   // --- Icon Sizes ---
-  final double iconSizeSmall = 16.0;
-  final double iconSizeDefault = 24.0;
-  final double iconSizeLarge = 32.0;
+  double get iconSizeSmall => 16.0.s;
+  double get iconSizeDefault => 24.0.s;
+  double get iconSizeLarge => 32.0.s;
 }
 
 // ==========================================
@@ -272,13 +236,13 @@ class _AppComponentStyles {
   // Styles for common structural pieces.
 
   /// Standard Edge Insets for page borders
-  EdgeInsets get pagePadding =>
-      EdgeInsets.all(AppUIConfig.metrics.paddingLarge); // used originally as 24
+  EdgeInsets get pagePadding => EdgeInsets.symmetric(
+        horizontal: Responsive.pagePadding,
+        vertical: AppUIConfig.metrics.paddingLarge,
+      );
 
   /// Standard Edge Insets for inner cards
-  EdgeInsets get cardPadding => EdgeInsets.all(
-    AppUIConfig.metrics.paddingDefault,
-  ); // used originally as 16
+  EdgeInsets get cardPadding => EdgeInsets.all(AppUIConfig.metrics.paddingDefault);
 
   /// Default Border Radius object for big containers (like GlassContainer)
   BorderRadius get containerRadius =>
