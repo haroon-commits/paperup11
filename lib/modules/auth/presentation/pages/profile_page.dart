@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paperup1/core/theme/app_ui_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:paperup1/common_widgets/liquid_header.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
@@ -37,7 +36,6 @@ class ProfilePage extends ConsumerWidget {
                 ]),
                 SizedBox(height: AppUIConfig.metrics.spacingLarge),
                 _buildSection(context, AppUIConfig.strings.profileAppPreferences, [
-                  _ProfileItem(icon: Icons.palette_outlined, label: AppUIConfig.strings.themeCustomization, onTap: () => context.go('/theme-settings')),
                   _ProfileItem(icon: Icons.language, label: AppUIConfig.strings.languageSetting, onTap: () {}),
                   _ProfileItem(icon: Icons.help_outline, label: AppUIConfig.strings.helpSupport, onTap: () {}),
                 ]),

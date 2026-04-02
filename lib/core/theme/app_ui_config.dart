@@ -300,6 +300,15 @@ class _AppComponentStyles {
 class _AppStrings {
   const _AppStrings();
 
+  // ── SCHOOL IDENTITY ─────────────────────────────────────────────────────────
+  /// The full name of the school shown across the app (login, dashboard, etc.)
+  final String schoolName = 'Greenfield Academy';
+
+  /// Asset path for the school logo SVG shown in the login & dashboard header.
+  /// Change this to point to a different SVG file inside assets/images/.
+  final String schoolLogoAsset = 'assets/images/school_logo.svg';
+  // ────────────────────────────────────────────────────────────────────────────
+
   final String homeworkTitle = 'Homework';
   final String homeworkSubtitle = 'Assignments & Tasks';
   final String submitButton = 'Submit Now';
@@ -353,20 +362,9 @@ class _AppStrings {
   final String personalInfo = 'Personal Information';
   final String privacySecurity = 'Privacy & Security';
   final String notificationSettings = 'Notification Settings';
-  final String themeCustomization = 'Theme Customization';
   final String languageSetting = 'Language (English)';
   final String helpSupport = 'Help & Support';
   final String signOut = 'Sign Out';
-  final String appearanceTitle = 'Appearance';
-  final String appearanceSubtitle = 'Personalize your experience';
-  final String themeDesignStyle = 'Design Style';
-  final String themePrimaryColor = 'Primary Color';
-  final String themePremiumFeatures = 'Premium Features';
-  final String themeAnimBgTitle = 'Animated Background';
-  final String themeAnimBgSub = 'Top-notch organic liquid effects';
-  final String themeGlass = 'Glass';
-  final String themeNeo = 'Neo';
-  final String themeClean = 'Clean';
 
   // Attendance & Messages
   final String attendanceSubtitle = 'Academic Records';

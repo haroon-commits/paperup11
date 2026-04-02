@@ -26,7 +26,7 @@ class MockAuthRepository implements AuthRepository {
         name: role.toUpperCase(),
         email: email,
         role: role,
-        avatarUrl: 'https://i.pravatar.cc/150?u=$email',
+        avatarUrl: 'https://ui-avatars.com/api/?name=${role.toUpperCase()}&background=random&color=fff',
       ),
     );
   }

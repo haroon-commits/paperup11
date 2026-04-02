@@ -10,7 +10,6 @@ import 'package:paperup1/modules/exams/presentation/pages/results_page.dart';
 import 'package:paperup1/modules/communication/presentation/pages/messages_page.dart';
 import 'package:paperup1/modules/timetable/presentation/pages/timetable_page.dart';
 import 'package:paperup1/modules/auth/presentation/pages/profile_page.dart';
-import 'package:paperup1/modules/auth/presentation/pages/theme_settings_page.dart';
 import 'package:paperup1/modules/dashboard/presentation/pages/home_shell.dart';
 import 'package:paperup1/core/navigation/not_found_page.dart';
 
@@ -73,10 +72,6 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '/timetable',
             builder: (context, state) => const TimetablePage(),
-          ),
-          GoRoute(
-            path: '/theme-settings',
-            builder: (context, state) => const ThemeSettingsPage(),
           ),
         ],
       ),

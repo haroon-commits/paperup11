@@ -6,6 +6,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:paperup1/modules/auth/presentation/state/auth_provider.dart';
 import 'package:paperup1/core/theme/design_system.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
+import 'package:paperup1/common_widgets/school_brand_widget.dart';
 
 class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -70,22 +71,19 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // Brand Badge
-                    Container(
-                      padding: EdgeInsets.all(AppUIConfig.metrics.paddingDefault),
-                      decoration: BoxDecoration(
-                        color: AppUIConfig.colors.white.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(28),
-                        border: Border.all(color: AppUIConfig.colors.white.withOpacity(0.2)),
-                      ),
-                      child: Icon(Icons.school_rounded, color: AppUIConfig.colors.white, size: 48),
-                    ).animate().scale(curve: Curves.easeOutBack, duration: 600.ms),
-                    
-                    SizedBox(height: AppUIConfig.metrics.spacingExtraLarge),
+                    // School Logo & Name
+                    const SchoolBrandWidget(logoSize: 72, direction: Axis.vertical)
+                        .animate()
+                        .scale(curve: Curves.easeOutBack, duration: 600.ms)
+                        .fadeIn(duration: 500.ms),
+
+                    SizedBox(height: AppUIConfig.metrics.spacingLarge),
+
+                    // App branding
                     Text(
                       AppUIConfig.strings.appName,
                       style: AppUIConfig.text.heading1.copyWith(
-                        fontSize: 42,
+                        fontSize: 36,
                         letterSpacing: -1.5,
                         shadows: [
                           Shadow(
@@ -96,7 +94,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         ],
                       ),
                     ).animate().fadeIn(delay: 200.ms).slideY(begin: 0.1, end: 0),
-                    
+
                     Text(
                       AppUIConfig.strings.loginSubtitle,
                       style: AppUIConfig.text.caption.copyWith(

@@ -10,6 +10,7 @@ import 'package:paperup1/core/theme/design_system.dart';
 import 'package:intl/intl.dart';
 import 'package:paperup1/common_widgets/glass_container.dart';
 import 'package:paperup1/common_widgets/page_background.dart';
+import 'package:paperup1/common_widgets/school_brand_widget.dart';
 
 class DashboardPage extends ConsumerWidget {
   const DashboardPage({super.key});
@@ -38,25 +39,28 @@ class DashboardPage extends ConsumerWidget {
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        // School logo + name
+                        const SchoolBrandWidget(
+                          logoSize: 40,
+                          direction: Axis.horizontal,
+                        ),
+                        // Date + avatar
                         Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text(
-                              AppUIConfig.strings.appName,
-                              style: AppUIConfig.text.heading1,
-                            ),
+                            _buildAvatar(user?.avatarUrl),
                             SizedBox(height: AppUIConfig.metrics.spacingTiny),
                             Text(
                               DateFormat('EEEE, d MMM').format(DateTime.now()),
                               style: AppUIConfig.text.caption.copyWith(
                                 color: AppUIConfig.colors.textLight,
-                                fontSize: 13,
+                                fontSize: 11,
                               ),
                             ),
                           ],
                         ),
-                        _buildAvatar(user?.avatarUrl),
                       ],
                     ),
                     SizedBox(height: AppUIConfig.metrics.spacingExtraLarge),
@@ -150,7 +154,8 @@ class DashboardPage extends ConsumerWidget {
       ),
       child: CircleAvatar(
         radius: AppUIConfig.metrics.radiusLarge,
-        backgroundImage: NetworkImage(url ?? 'https://i.pravatar.cc/150'),
+        backgroundImage: NetworkImage(url ?? 'https://ui-avatars.com/api/?name=User&background=random&color=fff'),
+        onBackgroundImageError: (_, __) {},
       ),
     );
   }

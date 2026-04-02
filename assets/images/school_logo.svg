@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Outer circle background -->
+  <circle cx="50" cy="50" r="48" fill="white" fill-opacity="0.15" stroke="white" stroke-opacity="0.3" stroke-width="1.5"/>
+  
+  <!-- Graduation cap top (mortarboard) -->
+  <polygon points="50,18 82,32 50,46 18,32" fill="white" fill-opacity="0.95"/>
+  <!-- Cap center knob -->
+  <circle cx="50" cy="32" r="3.5" fill="white"/>
+  
+  <!-- Left hanging tassel rope -->
+  <line x1="82" y1="32" x2="82" y2="50" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="82" cy="53" r="3" fill="white" fill-opacity="0.85"/>
+
+  <!-- Open book body -->
+  <path d="M28 52 Q28 48 33 48 L50 50 L50 78 Q44 76 33 76 Q28 76 28 72 Z" fill="white" fill-opacity="0.85"/>
+  <path d="M72 52 Q72 48 67 48 L50 50 L50 78 Q56 76 67 76 Q72 76 72 72 Z" fill="white" fill-opacity="0.75"/>
+  <!-- Book spine line -->
+  <line x1="50" y1="50" x2="50" y2="78" stroke="white" stroke-width="1.5" stroke-opacity="0.5"/>
+  <!-- Book lines left page -->
+  <line x1="34" y1="58" x2="47" y2="57" stroke="white" stroke-width="1.2" stroke-opacity="0.5" stroke-linecap="round"/>
+  <line x1="34" y1="63" x2="47" y2="62" stroke="white" stroke-width="1.2" stroke-opacity="0.5" stroke-linecap="round"/>
+  <line x1="34" y1="68" x2="47" y2="67" stroke="white" stroke-width="1.2" stroke-opacity="0.5" stroke-linecap="round"/>
+  <!-- Book lines right page -->
+  <line x1="53" y1="57" x2="66" y2="58" stroke="white" stroke-width="1.2" stroke-opacity="0.4" stroke-linecap="round"/>
+  <line x1="53" y1="62" x2="66" y2="63" stroke="white" stroke-width="1.2" stroke-opacity="0.4" stroke-linecap="round"/>
+  <line x1="53" y1="67" x2="66" y2="68" stroke="white" stroke-width="1.2" stroke-opacity="0.4" stroke-linecap="round"/>
+</svg>
